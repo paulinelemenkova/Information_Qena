@@ -251,26 +251,26 @@ The detailed information on the satellite images is summarised in Table \ref{tab
 
 \begin{table}[H]
 \small
-\caption{Results of the k-means classification of the Landsat-8 OLI/TIRS images for Qena Bend region. \textsuperscript{1}.\label{tab2}}
+\caption{Pairwise comparison of the k-means classification for Bands 5-4-3 of the Landsat-8 OLI/TIRS images for 2013 and 2015 in Qena Bend region. \textsuperscript{1}.\label{tab2}}
 	\begin{adjustwidth}{-\extralength}{0cm}
-		\begin{tabularx}{\fulllength}{ C | C | C | C | C | C | C }
+		\begin{tabularx}{\fulllength}{ C || C | C | C || C | C | C }
 			\toprule
-			\textbf{Class ID} & \textbf{2013} & \textbf{2015} & \textbf{2016} & \textbf{2019} & \textbf{2022} & \textbf{2023} \\
+			\textbf{Class ID} & \textbf{\makecell{2013 B5}} & \textbf{2013 B4} & \textbf{2013 B3} & \textbf{2015 B5} & \textbf{2015 B4} & \textbf{2015 B3} \\
 			\midrule
-			XXX & XXX & XXX & XXX & XXX & XXX & XXX \\
-			XXX & XXX & XXX & XXX & XXX & XXX & XXX \\
-			XXX & XXX & XXX & XXX & XXX & XXX & XXX \\
-			XXX & XXX & XXX & XXX & XXX & XXX & XXX \\
-			XXX & XXX & XXX & XXX & XXX & XXX & XXX \\
-			XXX & XXX & XXX & XXX & XXX & XXX & XXX \\
-			XXX & XXX & XXX & XXX & XXX & XXX & XXX \\
-			XXX & XXX & XXX & XXX & XXX & XXX & XXX \\
-			XXX & XXX & XXX & XXX & XXX & XXX & XXX \\
-			XXX & XXX & XXX & XXX & XXX & XXX & XXX \\	
+			1 & 21019.08 & 18348.92 & 15722.58 & 19819.50 & 17226.143 & 14765.14 \\
+			2 & 21956.38 & 19148.12 & 16294.50 & 12087.00 & 10917.333 & 10115.00 \\
+			3 & 26892.38 & 23105.00 & 19120.92 & 18736.17 & 9956.333 & 10142.17 \\
+			4 & 14308.50 & 13163.75 & 11730.75 & 24835.46 & 21496.385 & 17990.38 \\
+			5 & 19246.50 & 16942.69 & 14626.81 & 23315.56 & 20178.688 & 17043.31 \\
+			6 & 17656.18 & 15405.09 & 13460.00 & 26302.78 & 22807.222 & 19156.67 \\
+			7 & 23465.45 & 20280.18 & 17179.82 & 15028.50 & 13507.500 & 12109.33 \\
+			8 & 16549.67 & 10211.17 & 10132.83 & 29412.00 & 25219.500 & 20731.50 \\
+			9 & 22484.00 & 19481.25 & 16802.50 & 17737.46 & 15833.385 & 13783.23 \\
+			10 & 24895.53 & 21740.20 & 18326.47 & 17737.46 & 18747.389 & 15990.33 \\	
 			\bottomrule
 		\end{tabularx}
 	\end{adjustwidth}
-	\noindent{\footnotesize{\textsuperscript{1} Sum of squares by clusters within computed cluster centroids.}}
+	\noindent{\footnotesize{\textsuperscript{1} Clusters are computed for each band in the composite triplets: Band 5 (NIR), Band 4 (Red) and Band 3 (Green)}}
 \end{table}
 
 \pagebreak
@@ -313,6 +313,30 @@ The detailed information on the satellite images is summarised in Table \ref{tab
 }\caption{Clustering of the Landsat 8-9 OLI/TIRS images Qena Bend of the Nile River, Egypt visible on in natural RGB colour for six years: (\textbf{a}) 2016 RGB in 564 Bands, (\textbf{b}) 2016 RGB in 754 Bands, (\textbf{c}) 2016 unsupervised classification, (\textbf{d}) 2019 RGB in 764 Bands, (\textbf{e}) 2019 RGB in 753 Bands, (\textbf{f}) 2019 RGB: Clustering.}\label{fig:05}
 \end{figure}
 
+\begin{table}[H]
+\small
+\caption{Pairwise comparison of the k-means classification for Bands 5-4-3 of the Landsat-8 OLI/TIRS images for 2016 and 2019 in Qena Bend region. \textsuperscript{1}.\label{tab2}}
+	\begin{adjustwidth}{-\extralength}{0cm}
+		\begin{tabularx}{\fulllength}{ C || C | C | C || C | C | C }
+			\toprule
+			\textbf{Class ID} & \textbf{2016 B5} & \textbf{2016 B4} & \textbf{2016 B3} & \textbf{2019 B5} & \textbf{2019 B4} & \textbf{2019 B3} \\
+			\midrule
+			1 & 25067.53 & 21805.82 & 18283.65 & 20721.42 & 18438.42 & 15725.33 \\
+			2 & 19837.27 & 17506.45 & 15060.45 & 24198.84 & 21005.26 & 17763.84 \\
+			3 & 27148.44 & 23483.89 & 19596.67 & 25536.93 & 22109.73 & 18481.20 \\
+			4 & 16049.43 & 13237.00 & 11880.43 & 18257.00 & 9376.75 & 9707.50 \\
+			5 & 19541.25 & 9323.50 & 9742.75 & 14476.67 & 12599.83 & 11411.17 \\
+			6 & 12780.50 & 11767.00 & 10670.50 & 16992.00 & 15236.88 & 13304.75 \\
+			7 & 21370.47 & 18891.65 & 16208.94 & 18829.53 & 16928.47 & 14654.00 \\
+			8 & 23122.89 & 20069.28 & 16927.33 & 31113.00 & 26355.00 & 21077.00 \\
+			9 & 18240.88 & 16536.62 & 14205.25 & 27920.00 & 23667.00 & 19115.00 \\
+			10 & 17269.14 & 15186.43 & 13284.43 & 22736.25 & 19858.25 & 16938.06 \\	
+			\bottomrule
+		\end{tabularx}
+	\end{adjustwidth}
+	\noindent{\footnotesize{\textsuperscript{1} Clusters are computed for each band in the composite triplets: Band 5 (NIR), Band 4 (Red) and Band 3 (Green)}}
+\end{table}
+
 \pagebreak
 
 \begin{figure}[H]
@@ -352,6 +376,30 @@ The detailed information on the satellite images is summarised in Table \ref{tab
 	\end{subfigure}%
 }\caption{Clustering of the Landsat 8-9 OLI/TIRS images Qena Bend of the Nile River, Egypt visible on in natural RGB colour for six years: (\textbf{a}) 2022 RGB in 631 Bands, (\textbf{b}) 2022 RGB in 543 Bands, (\textbf{c}) 2022 unsupervised classification, (\textbf{d}) 2023 RGB in 562 Bands, (\textbf{e}) 2023 RGB in 753 Bands, (\textbf{f}) 2023 RGB: Clustering.}\label{fig:06}
 \end{figure}
+
+\begin{table}[H]
+\small
+\caption{Pairwise comparison of the k-means classification for Bands 5-4-3 of the Landsat-8 OLI/TIRS images for 2022 and 2023 in Qena Bend region. \textsuperscript{1}.\label{tab2}}
+	\begin{adjustwidth}{-\extralength}{0cm}
+		\begin{tabularx}{\fulllength}{ C | C | C | C | C | C | C }
+			\toprule
+			\textbf{Class ID} & \textbf{2022 B5} & \textbf{2022 B4} & \textbf{2022 B3} & \textbf{2023 B5} & \textbf{2023 B4} & \textbf{2023 B3} \\
+			\midrule
+			1 & XX & XX & XX & 21513.50 & 10245.750 & 10483.000 \\
+			2 & XX & XX & XX & 25528.40 & 22234.800 & 18665.200 \\
+			3 & XX & XX & XX & 17918.11 & 9096.444 & 9575.333 \\
+			4 & XX & XX & XX & 24549.75 & 21362.375 & 17997.875 \\
+			5 & XX & XX & XX & 15965.40 & 14835.200 & 13574.400 \\
+			6 & XX & XX & XX & 22865.67 & 19456.933 & 16537.733 \\
+			7 & XX & XX & XX & 23488.23 & 20695.000 & 17726.000 \\
+			8 & XX & XX & XX & 18460.75 & 16531.833 & 14379.417 \\
+			9 & XX & XX & XX & 20155.57 & 18063.786 & 15478.143 \\
+			10 & XX & XX & XX & 27425.50 & 23626.900 & 19359.200 \\	
+			\bottomrule
+		\end{tabularx}
+	\end{adjustwidth}
+	\noindent{\footnotesize{\textsuperscript{1} Clusters are computed for each band in the composite triplets: Band 5 (NIR), Band 4 (Red) and Band 3 (Green)}}
+\end{table}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Discussion}
