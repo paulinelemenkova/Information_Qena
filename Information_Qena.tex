@@ -109,14 +109,15 @@ Extracting information from the satellite images for analysis of drainage wadi n
 \newpage
 \section{Materials and Methods}
 
-Multispectral satellite images such as Landsat TM/ETM+, and OLI/TIRS) provide a valuable source of remote sensing data widely used in environmental studies of Egypt \cite{Elfadaly,Sultanetal1986,Sultanetal1987}. In this work, we use six Landsat 8-9 OLI/TIRS images for comparative analysis of the changes in wadi channels in the Qena Bend area and surroundings. 
-
 \subsection{Data}
+
+Multispectral satellite images such as Landsat TM/ETM+, and OLI/TIRS) provide a valuable source of remote sensing data widely used in environmental studies of Egypt \cite{Elfadaly,Sultanetal1986,Sultanetal1987}. In this work, we use the two major types of data Figure \ref{fig02}: the topographic grid for mapping the study area and a series of six satellite images presented by the Landsat 8-9 OLI/TIRS scenes. The high-resolution topographic data were used for inspection of the relief in the region, while the remote sensing data were used for comparative analysis of changes in the wadi channels in the Qena Bend area and surroundings by image processing and k-means clustering algorithms using R. 
+
 \begin{figure}[H]
 \centering
 	\includegraphics[width=14.0 cm]{Fig_02}
 	\caption{Data sources: summary of the materials used in this study. Flowchart source: authors.
-	\label{fig03}}
+	\label{fig02}}
 \end{figure}
 
 The detailed information on the satellite images is summarised in Table \ref{tab1}. 
@@ -181,16 +182,34 @@ The detailed information on the satellite images is summarised in Table \ref{tab
 \end{figure}
 
 %----------- subsection ----------->
-\subsection{Subsection}
-
-%----------- subsection ----------->
-\subsection{Subsection}
-
-%----------- subsection ----------->
-\subsection{Subsection}
+\subsection{Methods}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Results}
+
+\begin{table}[H]
+\small
+\caption{Results of the k-means classification of the Landsat-8 OLI images for Qena Bend area\textsuperscript{1}.\label{tab2}}
+	\begin{adjustwidth}{-\extralength}{0cm}
+		\begin{tabularx}{\fulllength}{ C | C | C | C | C | C | C }
+			\toprule
+			\textbf{Class ID} & \textbf{2013} & \textbf{2015} & \textbf{2016} & \textbf{2019} & \textbf{2022} & \textbf{2023} \\
+			\midrule
+			1 & 6237758.6 & 25058427 & 11830859 & 11050520 & 33773365.2 & 22414794 \\
+			2 & 26530972.6 & 3829403 & 6847520 & 7687698 & 21467288.5 & 4080038 \\
+			3 & 46356528.0 & 23160871 & 13056437 & 31925587 & 466472.5 & 13918989 \\
+			4 & 10314256.8 & 7458695 & 12594525 & 3359878 & 3547592.0 & 1863680 \\
+			5 & 7861914.8 & 9909609 & 3012708 & 11101016 & 7714730.1 & 6083803 \\
+			6 & 625035.3 & 4568955 & 2195275 & 14290386 & 9346294.4 & 14743313 \\
+			7 & 22694195.3 & 3019950 & 12277811 & 14898378 & 6978872.8 & 6370890 \\
+			8 & 5804917.1 & 1942973 & 10144633 & 5386949 & 16906933.2 & 6053497 \\
+			9 & 7320502.4 & 13450745 & 3220846 & 5501193 & 8429786.2 & 11952344 \\
+			10 & 6121676.5 & 10228437 & 4195904 & 10594134 & 11161798.4 & 10517903 \\	
+			\bottomrule
+		\end{tabularx}
+	\end{adjustwidth}
+	\noindent{\footnotesize{\textsuperscript{1} Sum of squares by clusters within computed cluster centroids.}}
+\end{table}
 
 \begin{figure}[H]
 \makebox[1.00\linewidth][r]{%
@@ -229,6 +248,30 @@ The detailed information on the satellite images is summarised in Table \ref{tab
 	\end{subfigure}%
 }\caption{Clustering of the Landsat 8-9 OLI/TIRS images Qena Bend of the Nile River, Egypt visible on in natural RGB colour for six years: (\textbf{a}) 2013 RGB in 432 Bands, (\textbf{b}) 2013 RGB in 543 Bands, (\textbf{c}) 2013 unsupervised classification, (\textbf{d}) 2015 RGB in 571 Bands, (\textbf{e}) 2015 RGB in 632 Bands, (\textbf{f}) 2015 RGB: Clustering.}\label{fig:04}
 \end{figure}
+
+\begin{table}[H]
+\small
+\caption{Results of the k-means classification of the Landsat-8 OLI/TIRS images for Qena Bend region. \textsuperscript{1}.\label{tab2}}
+	\begin{adjustwidth}{-\extralength}{0cm}
+		\begin{tabularx}{\fulllength}{ C | C | C | C | C | C | C }
+			\toprule
+			\textbf{Class ID} & \textbf{2013} & \textbf{2015} & \textbf{2016} & \textbf{2019} & \textbf{2022} & \textbf{2023} \\
+			\midrule
+			XXX & XXX & XXX & XXX & XXX & XXX & XXX \\
+			XXX & XXX & XXX & XXX & XXX & XXX & XXX \\
+			XXX & XXX & XXX & XXX & XXX & XXX & XXX \\
+			XXX & XXX & XXX & XXX & XXX & XXX & XXX \\
+			XXX & XXX & XXX & XXX & XXX & XXX & XXX \\
+			XXX & XXX & XXX & XXX & XXX & XXX & XXX \\
+			XXX & XXX & XXX & XXX & XXX & XXX & XXX \\
+			XXX & XXX & XXX & XXX & XXX & XXX & XXX \\
+			XXX & XXX & XXX & XXX & XXX & XXX & XXX \\
+			XXX & XXX & XXX & XXX & XXX & XXX & XXX \\	
+			\bottomrule
+		\end{tabularx}
+	\end{adjustwidth}
+	\noindent{\footnotesize{\textsuperscript{1} Sum of squares by clusters within computed cluster centroids.}}
+\end{table}
 
 \pagebreak
 
