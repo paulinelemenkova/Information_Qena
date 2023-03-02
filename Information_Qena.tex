@@ -34,6 +34,8 @@
 \usepackage{gensymb} % for \textdegree
 \usepackage{tabularx}
 \usepackage{makecell}
+\usepackage{array}
+\newcolumntype{?}{!{\vrule width 1pt}}
 
 %=================================================================
 % Full title of the paper (Capitalized)
@@ -140,7 +142,7 @@ The detailed information on the satellite images is summarised in Table \ref{tab
 			\bottomrule
 		\end{tabularx}
 	\end{adjustwidth}
-	\noindent{\footnotesize{\textsuperscript{1} The Sensor ID is common for all the scenes: Landsat 8-9 OLI/TIRS (Operational Land Imager and Thermal Infrared Sensor), Collection 2 Level-2. Path/row parameters common for all the images: 175/42. Coverage: Qena Bend, the Nile River, Upper Egypt. Image source: the USGS \cite{EROS}}}
+	\noindent{\footnotesize{\textsuperscript{1} The Sensor ID is common for all the scenes: Landsat 8-9 OLI/TIRS (Operational Land Imager and Thermal Infrared Sensor), Collection 2 Level-2. Path/row parameters common for all the images: 175/42. Coverage: Qena Bend, the Nile River, Upper Egypt. Image source: the USGS}}
 \end{table}
 
 \begin{figure}[H]
@@ -223,17 +225,17 @@ The detailed information on the satellite images is summarised in Table \ref{tab
 \makebox[1.00\linewidth][r]{%
 	\begin{subfigure}[b]{.40\textwidth}
 		\centering
-			\includegraphics[width=0.87\textwidth]{Fig_04a}
+			\includegraphics[width=0.87\textwidth]{Fig_05a}
 		\caption{2013: Bands 432}
 	\end{subfigure}%
 	\begin{subfigure}[b]{.40\textwidth}
 		\centering
-		\includegraphics[width=0.87\textwidth]{Fig_04b}
+		\includegraphics[width=0.87\textwidth]{Fig_05b}
 		\caption{2013: Bands 543}
 	\end{subfigure}%
 	\begin{subfigure}[b]{.40\textwidth}
 		\centering
-		\includegraphics[width=1.00\textwidth]{Fig_04c}
+		\includegraphics[width=1.00\textwidth]{Fig_05c}
 		\caption{2013: Clustering}
 	\end{subfigure}%
 }\\
@@ -241,27 +243,27 @@ The detailed information on the satellite images is summarised in Table \ref{tab
 \makebox[1.00\linewidth][r]{%
 	\begin{subfigure}[b]{.40\textwidth}
 		\centering
-			\includegraphics[width=0.87\textwidth]{Fig_04d}
+			\includegraphics[width=0.87\textwidth]{Fig_05d}
 		\caption{2015: Bands 571}
 	\end{subfigure}%
 	\begin{subfigure}[b]{.40\textwidth}
 		\centering
-		\includegraphics[width=0.87\textwidth]{Fig_04e}
+		\includegraphics[width=0.87\textwidth]{Fig_05e}
 		\caption{2015: Bands 632}
 	\end{subfigure}%
 	\begin{subfigure}[b]{.40\textwidth}
 		\centering
-		\includegraphics[width=0.92\textwidth]{Fig_04f}
+		\includegraphics[width=0.92\textwidth]{Fig_05f}
 		\caption{2015: Clustering}
 	\end{subfigure}%
-}\caption{Clustering of the Landsat 8-9 OLI/TIRS images Qena Bend of the Nile River, Egypt visible on in natural RGB colour for six years: (\textbf{a}) 2013 RGB in 432 Bands, (\textbf{b}) 2013 RGB in 543 Bands, (\textbf{c}) 2013 unsupervised classification, (\textbf{d}) 2015 RGB in 571 Bands, (\textbf{e}) 2015 RGB in 632 Bands, (\textbf{f}) 2015 RGB: Clustering.}\label{fig:04}
+}\caption{Clustering of the Landsat 8-9 OLI/TIRS images Qena Bend of the Nile River, Egypt visible on in natural RGB colour for six years: (\textbf{a}) 2013 RGB in 432 Bands, (\textbf{b}) 2013 RGB in 543 Bands, (\textbf{c}) 2013 unsupervised classification, (\textbf{d}) 2015 RGB in 571 Bands, (\textbf{e}) 2015 RGB in 632 Bands, (\textbf{f}) 2015 RGB: Clustering.}\label{fig:05}
 \end{figure}
 
 \begin{table}[H]
 \small
 \caption{Pairwise comparison of the k-means classification for Bands 5-4-3 of the Landsat-8 OLI/TIRS images for 2013 and 2015 in Qena Bend region. \textsuperscript{1}.\label{tab2}}
 	\begin{adjustwidth}{-\extralength}{0cm}
-		\begin{tabularx}{\fulllength}{ C || C | C | C || C | C | C }
+		\begin{tabularx}{\fulllength}{||C?C|C|C?C|C|C||}
 			\toprule
 			\textbf{Class ID} & \textbf{\makecell{2013 B5}} & \textbf{2013 B4} & \textbf{2013 B3} & \textbf{2015 B5} & \textbf{2015 B4} & \textbf{2015 B3} \\
 			\midrule
@@ -287,17 +289,17 @@ The detailed information on the satellite images is summarised in Table \ref{tab
 \makebox[1.00\linewidth][r]{%
 	\begin{subfigure}[b]{.40\textwidth}
 		\centering
-			\includegraphics[width=0.87\textwidth]{Fig_05a}
+			\includegraphics[width=0.87\textwidth]{Fig_06a}
 		\caption{2016: Bands 564}
 	\end{subfigure}%
 	\begin{subfigure}[b]{.40\textwidth}
 		\centering
-		\includegraphics[width=0.87\textwidth]{Fig_05b}
+		\includegraphics[width=0.87\textwidth]{Fig_06b}
 		\caption{2016: Bands 754}
 	\end{subfigure}%
 	\begin{subfigure}[b]{.40\textwidth}
 		\centering
-		\includegraphics[width=0.90\textwidth]{Fig_05c}
+		\includegraphics[width=0.90\textwidth]{Fig_06c}
 		\caption{2016: Clustering}
 	\end{subfigure}%
 }\\
@@ -305,27 +307,27 @@ The detailed information on the satellite images is summarised in Table \ref{tab
 \makebox[1.00\linewidth][r]{%
 	\begin{subfigure}[b]{.40\textwidth}
 		\centering
-			\includegraphics[width=0.87\textwidth]{Fig_05d}
+			\includegraphics[width=0.87\textwidth]{Fig_06d}
 		\caption{2019: Bands 764}
 	\end{subfigure}%
 	\begin{subfigure}[b]{.40\textwidth}
 		\centering
-		\includegraphics[width=0.87\textwidth]{Fig_05e}
+		\includegraphics[width=0.87\textwidth]{Fig_06e}
 		\caption{2019: Bands 753}
 	\end{subfigure}%
 	\begin{subfigure}[b]{.40\textwidth}
 		\centering
-		\includegraphics[width=0.92\textwidth]{Fig_05f}
+		\includegraphics[width=0.92\textwidth]{Fig_06f}
 		\caption{2019: Clustering}
 	\end{subfigure}%
-}\caption{Clustering of the Landsat 8-9 OLI/TIRS images Qena Bend of the Nile River, Egypt visible on in natural RGB colour for six years: (\textbf{a}) 2016 RGB in 564 Bands, (\textbf{b}) 2016 RGB in 754 Bands, (\textbf{c}) 2016 unsupervised classification, (\textbf{d}) 2019 RGB in 764 Bands, (\textbf{e}) 2019 RGB in 753 Bands, (\textbf{f}) 2019 RGB: Clustering.}\label{fig:05}
+}\caption{Clustering of the Landsat 8-9 OLI/TIRS images Qena Bend of the Nile River, Egypt visible on in natural RGB colour for six years: (\textbf{a}) 2016 RGB in 564 Bands, (\textbf{b}) 2016 RGB in 754 Bands, (\textbf{c}) 2016 unsupervised classification, (\textbf{d}) 2019 RGB in 764 Bands, (\textbf{e}) 2019 RGB in 753 Bands, (\textbf{f}) 2019 RGB: Clustering.}\label{fig:06}
 \end{figure}
 
 \begin{table}[H]
 \small
 \caption{Pairwise comparison of the k-means classification for Bands 5-4-3 of the Landsat-8 OLI/TIRS images for 2016 and 2019 in Qena Bend region. \textsuperscript{1}.\label{tab2}}
 	\begin{adjustwidth}{-\extralength}{0cm}
-		\begin{tabularx}{\fulllength}{ C || C | C | C || C | C | C }
+		\begin{tabularx}{\fulllength}{||C?C|C|C?C|C|C||}
 			\toprule
 			\textbf{Class ID} & \textbf{2016 B5} & \textbf{2016 B4} & \textbf{2016 B3} & \textbf{2019 B5} & \textbf{2019 B4} & \textbf{2019 B3} \\
 			\midrule
@@ -351,17 +353,17 @@ The detailed information on the satellite images is summarised in Table \ref{tab
 \makebox[1.00\linewidth][r]{%
 	\begin{subfigure}[b]{.40\textwidth}
 		\centering
-			\includegraphics[width=0.87\textwidth]{Fig_06a}
+			\includegraphics[width=0.87\textwidth]{Fig_07a}
 		\caption{2022: Bands 631}
 	\end{subfigure}%
 	\begin{subfigure}[b]{.40\textwidth}
 		\centering
-		\includegraphics[width=0.87\textwidth]{Fig_06b}
+		\includegraphics[width=0.87\textwidth]{Fig_07b}
 		\caption{2022: Bands 543}
 	\end{subfigure}%
 	\begin{subfigure}[b]{.40\textwidth}
 		\centering
-		\includegraphics[width=0.90\textwidth]{Fig_06c}
+		\includegraphics[width=0.90\textwidth]{Fig_07c}
 		\caption{2022: Clustering}
 	\end{subfigure}%
 }\\
@@ -369,27 +371,27 @@ The detailed information on the satellite images is summarised in Table \ref{tab
 \makebox[1.00\linewidth][r]{%
 	\begin{subfigure}[b]{.40\textwidth}
 		\centering
-			\includegraphics[width=0.87\textwidth]{Fig_06d}
+			\includegraphics[width=0.87\textwidth]{Fig_07d}
 		\caption{2023: Bands 562}
 	\end{subfigure}%
 	\begin{subfigure}[b]{.40\textwidth}
 		\centering
-		\includegraphics[width=0.87\textwidth]{Fig_06e}
+		\includegraphics[width=0.87\textwidth]{Fig_07e}
 		\caption{2023: Bands 753}
 	\end{subfigure}%
 	\begin{subfigure}[b]{.40\textwidth}
 		\centering
-		\includegraphics[width=0.92\textwidth]{Fig_06f}
+		\includegraphics[width=0.92\textwidth]{Fig_07f}
 		\caption{2023: Clustering}
 	\end{subfigure}%
-}\caption{Clustering of the Landsat 8-9 OLI/TIRS images Qena Bend of the Nile River, Egypt visible on in natural RGB colour for six years: (\textbf{a}) 2022 RGB in 631 Bands, (\textbf{b}) 2022 RGB in 543 Bands, (\textbf{c}) 2022 unsupervised classification, (\textbf{d}) 2023 RGB in 562 Bands, (\textbf{e}) 2023 RGB in 753 Bands, (\textbf{f}) 2023 RGB: Clustering.}\label{fig:06}
+}\caption{Clustering of the Landsat 8-9 OLI/TIRS images Qena Bend of the Nile River, Egypt visible on in natural RGB colour for six years: (\textbf{a}) 2022 RGB in 631 Bands, (\textbf{b}) 2022 RGB in 543 Bands, (\textbf{c}) 2022 unsupervised classification, (\textbf{d}) 2023 RGB in 562 Bands, (\textbf{e}) 2023 RGB in 753 Bands, (\textbf{f}) 2023 RGB: Clustering.}\label{fig:07}
 \end{figure}
 
 \begin{table}[H]
 \small
 \caption{Pairwise comparison of the k-means classification for Bands 5-4-3 of the Landsat-8 OLI/TIRS images for 2022 and 2023 in Qena Bend region. \textsuperscript{1}.\label{tab2}}
 	\begin{adjustwidth}{-\extralength}{0cm}
-		\begin{tabularx}{\fulllength}{ C | C | C | C | C | C | C }
+		\begin{tabularx}{\fulllength}{||C?C|C|C?C|C|C||}
 			\toprule
 			\textbf{Class ID} & \textbf{2022 B5} & \textbf{2022 B4} & \textbf{2022 B3} & \textbf{2023 B5} & \textbf{2023 B4} & \textbf{2023 B3} \\
 			\midrule
