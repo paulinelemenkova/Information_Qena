@@ -33,6 +33,7 @@
 \usepackage{xcolor}
 \usepackage{gensymb} % for \textdegree
 \usepackage{tabularx}
+\usepackage{makecell}
 
 %=================================================================
 % Full title of the paper (Capitalized)
@@ -117,6 +118,29 @@ Multispectral satellite images such as Landsat TM/ETM+, and OLI/TIRS) provide a 
 	\caption{Data sources: summary of the materials used in this study. Flowchart source: authors.
 	\label{fig03}}
 \end{figure}
+
+The detailed information on the satellite images is summarised in Table \ref{tab1}. 
+
+\begin{table}[H]
+\small
+\caption{Satellite images used for computing the VIs: Landsat-8 OLI/TIRS collected from the USGS. \textsuperscript{1}.\label{tab1}}
+	\begin{adjustwidth}{-\extralength}{0cm}
+%		\newcolumntype{C}{>{\centering\arraybackslash}X}
+		\begin{tabularx}{\fulllength}{ p{1.6cm} | p{1.8cm} | p{7.0cm} | p{4.0cm} | p{2.0cm} }
+			\toprule
+			\textbf{Date} & \textbf{Spacecraft} & \textbf{Landsat Product ID} & \textbf{Scene ID} & \textbf{Cloudiness} \\
+			\midrule
+			2013/11/16 & Landsat 8 & \makecell{LC08\_L2SP\_175042\_20131116\_20200912\_02\_T1} & LC81750422013320LGN01 & 0.89 \\
+			2015/11/22 & Landsat 8 & \makecell{LC08\_L2SP\_175042\_20151122\_20200908\_02\_T1} & LC81750422015326LGN01 & 0.05 \\
+			2016/11/08 & Landsat 8 & \makecell{LC08\_L2SP\_175042\_20161108\_20200905\_02\_T1} & LC81750422016313LGN01 & 0.31 \\
+			2019/11/17 & Landsat 8 & \makecell{LC08\_L2SP\_175042\_20191117\_20200825\_02\_T1} & LC81750422019321LGN00 & 1.16 \\
+			2022/11/09 & Landsat 8 & \makecell{LC08\_L2SP\_175042\_20221109\_20221121\_02\_T1} & LC81750422022313LGN00 & 0.02 \\
+			2023/01/20 & Landsat 9 & \makecell{LC09\_L2SP\_175042\_20230120\_20230122\_02\_T1} & LC91750422023020LGN01 & 0.32 \\	
+			\bottomrule
+		\end{tabularx}
+	\end{adjustwidth}
+	\noindent{\footnotesize{\textsuperscript{1} The Sensor ID is common for all the scenes: Landsat 8-9 OLI/TIRS (Operational Land Imager and Thermal Infrared Sensor), Collection 2 Level-2. Path/row parameters common for all the images: 175/42. Coverage: Qena Bend, the Nile River, Upper Egypt. Image source: the USGS \cite{EROS}}}
+\end{table}
 
 \begin{figure}[H]
 \makebox[1.00\linewidth][r]{%
