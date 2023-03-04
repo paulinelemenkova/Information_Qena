@@ -211,6 +211,8 @@ The detailed information on the satellite images is summarised in Table \ref{tab
 
 The 2D and 3D maps showing the topography and geomorphic structure of the Wadi Qena region were prepared using the Generic Mapping Tools \cite{Wessel} by existing methods of cartographic scripting \cite{Lemenkova202228}.
 
+All the maps derived from the satellite images were georeferenced automatically by R library 'raster' in the WGS84 datum, UTM Coordinate system Zone 36, 
+
 \begin{figure}[H]
 \centering
 	\includegraphics[width=12.0 cm]{Fig_05}
@@ -222,29 +224,7 @@ The 2D and 3D maps showing the topography and geomorphic structure of the Wadi Q
 \pagebreak
 \section{Results}
 
-\begin{table}[H]
-\small
-\caption{Results of the k-means classification of the Landsat-8 OLI images for Qena Bend area\textsuperscript{1}.\label{tab2}}
-	\begin{adjustwidth}{-\extralength}{0cm}
-		\begin{tabularx}{\fulllength}{ C | C | C | C | C | C | C }
-			\toprule
-			\textbf{Class ID} & \textbf{2013} & \textbf{2015} & \textbf{2016} & \textbf{2019} & \textbf{2022} & \textbf{2023} \\
-			\midrule
-			1 & 6237758.6 & 25058427 & 11830859 & 11050520 & 33773365.2 & 22414794 \\
-			2 & 26530972.6 & 3829403 & 6847520 & 7687698 & 21467288.5 & 4080038 \\
-			3 & 46356528.0 & 23160871 & 13056437 & 31925587 & 466472.5 & 13918989 \\
-			4 & 10314256.8 & 7458695 & 12594525 & 3359878 & 3547592.0 & 1863680 \\
-			5 & 7861914.8 & 9909609 & 3012708 & 11101016 & 7714730.1 & 6083803 \\
-			6 & 625035.3 & 4568955 & 2195275 & 14290386 & 9346294.4 & 14743313 \\
-			7 & 22694195.3 & 3019950 & 12277811 & 14898378 & 6978872.8 & 6370890 \\
-			8 & 5804917.1 & 1942973 & 10144633 & 5386949 & 16906933.2 & 6053497 \\
-			9 & 7320502.4 & 13450745 & 3220846 & 5501193 & 8429786.2 & 11952344 \\
-			10 & 6121676.5 & 10228437 & 4195904 & 10594134 & 11161798.4 & 10517903 \\	
-			\bottomrule
-		\end{tabularx}
-	\end{adjustwidth}
-	\noindent{\footnotesize{\textsuperscript{1} Sum of squares by clusters within computed cluster centroids.}}
-\end{table}
+The system of Wadi Fluvial structure and drainage stream network in the surroundings of the Qena Bend of the Nile River is largely controlled by the underlying geological structure and regional lithology. The origin of these basins takes place in mountainous highland of the basement and is oriented West-East, either to the Nile or to the Red Sea, according to catchment. In both cases, the potential damage from the disastrous events may affect urban areas of the small cities and infrastructure of the industrial places. Figure \ref{fig06} shows the wadi streams with their typical dendrite structure, oriented towards Qena Bend segment of the Nile.
 
 \begin{figure}[H]
 \makebox[1.00\linewidth][r]{%
@@ -281,35 +261,32 @@ The 2D and 3D maps showing the topography and geomorphic structure of the Wadi Q
 		\includegraphics[width=0.92\textwidth]{Fig_06f}
 		\caption{2015: Clustering}
 	\end{subfigure}%
-}\caption{Clustering of the Landsat 8-9 OLI/TIRS images Qena Bend of the Nile River, Egypt visible on in natural RGB colour for six years: (\textbf{a}) 2013 RGB in 432 Bands, (\textbf{b}) 2013 RGB in 543 Bands, (\textbf{c}) 2013 unsupervised classification, (\textbf{d}) 2015 RGB in 571 Bands, (\textbf{e}) 2015 RGB in 632 Bands, (\textbf{f}) 2015 RGB: Clustering.}\label{fig:06}
+}\caption{Clustering of the Landsat 8-9 OLI/TIRS images: Qena Bend of the Nile River visible on in natural RGB colours for six years: (\textbf{a}) 2013 RGB in 432 Bands, (\textbf{b}) 2013 RGB in 543 Bands, (\textbf{c}) 2013 unsupervised classification, (\textbf{d}) 2015 RGB in 571 Bands, (\textbf{e}) 2015 RGB in 632 Bands, (\textbf{f}) 2015 RGB: Clustering.}\label{fig06}
 \end{figure}
 
 \begin{table}[H]
 \small
-\caption{Pairwise comparison of the k-means classification for Bands 5-4-3 of the Landsat-8 OLI/TIRS images for 2013 and 2015 in Qena Bend region. \textsuperscript{1}.\label{tab2}}
+\caption{Results of the k-means classification of the Landsat-8 OLI images for Qena Bend area\textsuperscript{1}.\label{tab2}}
 	\begin{adjustwidth}{-\extralength}{0cm}
-		\begin{tabularx}{\fulllength}{||C?C|C|C?C|C|C||}
+		\begin{tabularx}{\fulllength}{ C | C | C | C | C | C | C }
 			\toprule
-			\multirow{2}{*}{$Class ID$} & \multicolumn{3}{c}{\textbf{2013}} & \multicolumn{3}{c}{\textbf{2015}} \\ 
-			\textbf{} & \emph{Band 5} & \emph{Band 4} & \emph{Band 3} & \emph{Band 5} & \emph{Band 4} & \emph{Band 3} \\
+			\textbf{Class ID} & \textbf{2013} & \textbf{2015} & \textbf{2016} & \textbf{2019} & \textbf{2022} & \textbf{2023} \\
 			\midrule
-			1 & 21019.08 & 18348.92 & 15722.58 & 19819.50 & 17226.143 & 14765.14 \\
-			2 & 21956.38 & 19148.12 & 16294.50 & 12087.00 & 10917.333 & 10115.00 \\
-			3 & 26892.38 & 23105.00 & 19120.92 & 18736.17 & 9956.333 & 10142.17 \\
-			4 & 14308.50 & 13163.75 & 11730.75 & 24835.46 & 21496.385 & 17990.38 \\
-			5 & 19246.50 & 16942.69 & 14626.81 & 23315.56 & 20178.688 & 17043.31 \\
-			6 & 17656.18 & 15405.09 & 13460.00 & 26302.78 & 22807.222 & 19156.67 \\
-			7 & 23465.45 & 20280.18 & 17179.82 & 15028.50 & 13507.500 & 12109.33 \\
-			8 & 16549.67 & 10211.17 & 10132.83 & 29412.00 & 25219.500 & 20731.50 \\
-			9 & 22484.00 & 19481.25 & 16802.50 & 17737.46 & 15833.385 & 13783.23 \\
-			10 & 24895.53 & 21740.20 & 18326.47 & 17737.46 & 18747.389 & 15990.33 \\	
+			1 & 6237758.6 & 25058427 & 11830859 & 11050520 & 33773365.2 & 22414794 \\
+			2 & 26530972.6 & 3829403 & 6847520 & 7687698 & 21467288.5 & 4080038 \\
+			3 & 46356528.0 & 23160871 & 13056437 & 31925587 & 466472.5 & 13918989 \\
+			4 & 10314256.8 & 7458695 & 12594525 & 3359878 & 3547592.0 & 1863680 \\
+			5 & 7861914.8 & 9909609 & 3012708 & 11101016 & 7714730.1 & 6083803 \\
+			6 & 625035.3 & 4568955 & 2195275 & 14290386 & 9346294.4 & 14743313 \\
+			7 & 22694195.3 & 3019950 & 12277811 & 14898378 & 6978872.8 & 6370890 \\
+			8 & 5804917.1 & 1942973 & 10144633 & 5386949 & 16906933.2 & 6053497 \\
+			9 & 7320502.4 & 13450745 & 3220846 & 5501193 & 8429786.2 & 11952344 \\
+			10 & 6121676.5 & 10228437 & 4195904 & 10594134 & 11161798.4 & 10517903 \\	
 			\bottomrule
 		\end{tabularx}
 	\end{adjustwidth}
-	\noindent{\footnotesize{\textsuperscript{1} Clusters are computed for each band in the composite triplets: Band 5 (NIR), Band 4 (Red) and Band 3 (Green)}}
+	\noindent{\footnotesize{\textsuperscript{1} Sum of squares by clusters within computed cluster centroids.}}
 \end{table}
-
-\pagebreak
 
 \begin{figure}[H]
 \makebox[1.00\linewidth][r]{%
@@ -348,6 +325,31 @@ The 2D and 3D maps showing the topography and geomorphic structure of the Wadi Q
 	\end{subfigure}%
 }\caption{Clustering of the Landsat 8-9 OLI/TIRS images Qena Bend of the Nile River, Egypt visible on in natural RGB colour for six years: (\textbf{a}) 2016 RGB in 564 Bands, (\textbf{b}) 2016 RGB in 754 Bands, (\textbf{c}) 2016 unsupervised classification, (\textbf{d}) 2019 RGB in 764 Bands, (\textbf{e}) 2019 RGB in 753 Bands, (\textbf{f}) 2019 RGB: Clustering.}\label{fig:07}
 \end{figure}
+
+\begin{table}[H]
+\small
+\caption{Pairwise comparison of the k-means classification for Bands 5-4-3 of the Landsat-8 OLI/TIRS images for 2013 and 2015 in Qena Bend region. \textsuperscript{1}.\label{tab2}}
+	\begin{adjustwidth}{-\extralength}{0cm}
+		\begin{tabularx}{\fulllength}{||C?C|C|C?C|C|C||}
+			\toprule
+			\multirow{2}{*}{$Class ID$} & \multicolumn{3}{c}{\textbf{2013}} & \multicolumn{3}{c}{\textbf{2015}} \\ 
+			\textbf{} & \emph{Band 5} & \emph{Band 4} & \emph{Band 3} & \emph{Band 5} & \emph{Band 4} & \emph{Band 3} \\
+			\midrule
+			1 & 21019.08 & 18348.92 & 15722.58 & 19819.50 & 17226.143 & 14765.14 \\
+			2 & 21956.38 & 19148.12 & 16294.50 & 12087.00 & 10917.333 & 10115.00 \\
+			3 & 26892.38 & 23105.00 & 19120.92 & 18736.17 & 9956.333 & 10142.17 \\
+			4 & 14308.50 & 13163.75 & 11730.75 & 24835.46 & 21496.385 & 17990.38 \\
+			5 & 19246.50 & 16942.69 & 14626.81 & 23315.56 & 20178.688 & 17043.31 \\
+			6 & 17656.18 & 15405.09 & 13460.00 & 26302.78 & 22807.222 & 19156.67 \\
+			7 & 23465.45 & 20280.18 & 17179.82 & 15028.50 & 13507.500 & 12109.33 \\
+			8 & 16549.67 & 10211.17 & 10132.83 & 29412.00 & 25219.500 & 20731.50 \\
+			9 & 22484.00 & 19481.25 & 16802.50 & 17737.46 & 15833.385 & 13783.23 \\
+			10 & 24895.53 & 21740.20 & 18326.47 & 17737.46 & 18747.389 & 15990.33 \\	
+			\bottomrule
+		\end{tabularx}
+	\end{adjustwidth}
+	\noindent{\footnotesize{\textsuperscript{1} Clusters are computed for each band in the composite triplets: Band 5 (NIR), Band 4 (Red) and Band 3 (Green)}}
+\end{table}
 
 \begin{table}[H]
 \small
