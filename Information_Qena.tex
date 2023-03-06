@@ -166,7 +166,7 @@ Multispectral satellite images such as Landsat TM/ETM+, and OLI/TIRS) provide a 
 	\noindent{\footnotesize{\textsuperscript{1} The Sensor ID is common for all the scenes: Landsat 8-9 OLI/TIRS (Operational Land Imager and Thermal Infrared Sensor), Collection 2 Level-2. Path/row parameters common for all the images: 175/42. Coverage: Qena Bend, the Nile River, Upper Egypt. Image source: the USGS}}
 \end{table}
 
-In this work, we use the two major types of data: the topographic and geologic grids for mapping the study area and six satellite Landsat 8-9 OLI/TIRS images, Figure \ref{fig04}. 
+Besides the Landsat OLI/TIRS images, we also use the topographic and geologic grids for mapping the study area and analysis of the geomorphology in 2D and 3D formats. The interpretation of these ancillary data helps to analyse and verify the impact of the geologic processes and lithological structure in the temporal variations in land cover and surface structure. In such a way, this work is based on the use of the two major types of data: six satellite Landsat 8-9 OLI/TIRS images and topographic-geological datasets Figure \ref{fig04}. 
 
 \begin{figure}[H]
 \centering
@@ -217,6 +217,11 @@ The high-resolution topographic data were used for inspection of the relief in t
 
 %----------- subsection ----------->
 \subsection{Methods}
+Various land surface objects have different spectral reflectance corresponding to Digital Numbers (DN) of pixels within a given wavelength interval which corresponds to different Bands (or channels) of the Landsat images. Such important feature of the objects visible on the images enables to identify them by computer vision. This is possible using the recognition of their characteristics through the classification of Landsat Bands taken as RGB triplets of band combinations. Here we used different colour composites for visual analysis of the scenes and false colour composites for clustering. 
+
+The triplets of Bands 5 (Near Infrared), 4 (Red) and 3 (Green) were selected for the following reasons. Healthy vegetation has a high absorption in Red (Band 4) and high reflectance in Green (Band 3) and NIR (Band 5). Therefore, such a combination helps to better discriminate vegetation areas in the floodplain of the Nile from soil, sandy and desert areas in the Western and eastern Deserts as well as Wadi valleys. In contrast, soil has a lesser reflectance spectra in NIR because its reflectance changes along with the wavelength. Therefore, such as combination of bands was used for clustering and calculation of the pixels of various land cover classes based on their distinct spectral signatures. 
+
+Nevertheless, soil properties differs according to the soil types that are reflected in the presence of organic carbon, moisture percentage, and specific geochemical characteristics of agricultural lands (contamination, contents of sulphides, fertilisers, pesticides and level of salinity). Likewise, reflectance spectra of diverse rock types differs significantly, which enables to discriminate them on the satellite images using algorithms of computer vision. Therefore, we presented various combinations of the Landsat OLI/TIRS bands for analysis of land surface types on the images, as shown in Figures \ref{fig07}, \ref{fig08} and \ref{fig09}.
 
 The 2D and 3D maps showing the topography and geomorphic structure of the Wadi Qena region were prepared using the Generic Mapping Tools \cite{Wessel} by existing methods of cartographic scripting \cite{Lemenkova202228}.
 
