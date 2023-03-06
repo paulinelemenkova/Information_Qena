@@ -175,6 +175,8 @@ Besides the Landsat OLI/TIRS images, we also use the topographic and geologic gr
 	\label{fig04}}
 \end{figure}
 
+Various land surface objects have different spectral reflectance corresponding to Digital Numbers (DN) of pixels within a given wavelength interval which corresponds to different Bands (or channels) of the Landsat images. Such important feature of the objects visible on the images enables to identify them by computer vision. This is possible using the recognition of their characteristics through the classification of Landsat Bands taken as RGB triplets of band combinations. In this study, we used different colour composites for visual analysis of the scenes and false colour composites for k-means clustering. The specific geometric curvature of the Nile River in Qena Bend area is perfectly visible in the Landsat images in natural colours, Figure \ref{fig05}. Here it is possible to discriminate the floodplain of the Nile River in bright green colour and a dark blue thread of the river itself contrasting against the surroundings of sands of the Western and Eastern Deserts. The areas of dark crimson represent  massifs of bare soil while ivory colour indicate a complex wadi network with its typical dendritic pattern contouring the valleys, as visible in Figure \ref{fig05}.
+
 \begin{figure}[H]
 \makebox[1.00\linewidth][r]{%
 	\begin{subfigure}[b]{.40\textwidth}
@@ -213,19 +215,14 @@ Besides the Landsat OLI/TIRS images, we also use the topographic and geologic gr
 }\caption{Qena Bend of the Nile River, Egypt visible on Landsat 8-9 OLI/TIRS images in natural RGB colour for six years: (\textbf{a}) 2013/12/20, (\textbf{b}) 2015/12/26, (\textbf{c}) 2018/02/21, (\textbf{d}) 2020/01/22, (\textbf{e}) 2021/12/18, (\textbf{f}) 2022/12/29.}\label{fig05}
 \end{figure}
 
-The high-resolution topographic data were used for inspection of the relief in the region, while the remote sensing data were used for comparative analysis of changes in the wadi channels in the Qena Bend area and surroundings by image processing and k-means clustering algorithms using R \cite{RCoreTeam}. 
+High-resolution topographic data were used for inspection of the relief in the region and visualising the geomorphology in 2D and 3D modes, while the remote sensing data were used for comparative analysis of changes in the wadi channels in the Qena Bend area and surroundings by image processing and k-means clustering algorithms using R \cite{RCoreTeam}. 
 
 %----------- subsection ----------->
 \subsection{Methods}
-Various land surface objects have different spectral reflectance corresponding to Digital Numbers (DN) of pixels within a given wavelength interval which corresponds to different Bands (or channels) of the Landsat images. Such important feature of the objects visible on the images enables to identify them by computer vision. This is possible using the recognition of their characteristics through the classification of Landsat Bands taken as RGB triplets of band combinations. Here we used different colour composites for visual analysis of the scenes and false colour composites for clustering. 
 
-The triplets of Bands 5 (Near Infrared), 4 (Red) and 3 (Green) were selected for the following reasons. Healthy vegetation has a high absorption in Red (Band 4) and high reflectance in Green (Band 3) and NIR (Band 5). Therefore, such a combination helps to better discriminate vegetation areas in the floodplain of the Nile from soil, sandy and desert areas in the Western and eastern Deserts as well as Wadi valleys. In contrast, soil has a lesser reflectance spectra in NIR because its reflectance changes along with the wavelength. Therefore, such as combination of bands was used for clustering and calculation of the pixels of various land cover classes based on their distinct spectral signatures. 
+The workflow in R is summarised in Figure \ref{fig06} which includes the following steps of data processing: . The 2D and 3D maps showing the topography and geomorphic structure of the Wadi Qena region were prepared using the Generic Mapping Tools \cite{Wessel} by the existing methods of cartographic scripting \cite{Lemenkova202228}.
 
-Nevertheless, soil properties differs according to the soil types that are reflected in the presence of organic carbon, moisture percentage, and specific geochemical characteristics of agricultural lands (contamination, contents of sulphides, fertilisers, pesticides and level of salinity). Likewise, reflectance spectra of diverse rock types differs significantly, which enables to discriminate them on the satellite images using algorithms of computer vision. Therefore, we presented various combinations of the Landsat OLI/TIRS bands for analysis of land surface types on the images, as shown in Figures \ref{fig07}, \ref{fig08} and \ref{fig09}.
-
-The 2D and 3D maps showing the topography and geomorphic structure of the Wadi Qena region were prepared using the Generic Mapping Tools \cite{Wessel} by existing methods of cartographic scripting \cite{Lemenkova202228}.
-
-All the maps derived from the satellite images were georeferenced automatically by R library 'raster' in the WGS84 datum, UTM Coordinate system Zone 36, 
+The triplets of Bands 5 (Near Infrared), 4 (Red) and 3 (Green) were selected for the following reasons. Healthy vegetation has a high absorption in Red (Band 4) and high reflectance in Green (Band 3) and NIR (Band 5). Therefore, such a combination helps to better discriminate vegetation areas in the floodplain of the Nile from soil, sandy and desert areas in the Western and eastern Deserts as well as Wadi valleys. In contrast, soil has a lesser reflectance spectra in NIR because its reflectance changes along with the wavelength. Therefore, such as combination of bands was used for clustering and calculation of the pixels of various land cover classes based on their distinct spectral signatures. All the maps derived from the clustering of the satellite images were georeferenced automatically with metadata identified by R library 'raster': WGS84 datum, UTM coordinate system Zone 36.
 
 \begin{figure}[H]
 \centering
@@ -233,6 +230,8 @@ All the maps derived from the satellite images were georeferenced automatically 
 	\caption{Methodological workflow of the processes and research steps applied in this study. Software: R version 4.2.2, 'DiagrammeR' library. Flowchart source: authors.
 	\label{fig06}}
 \end{figure}
+
+Nevertheless, spectral signature of land surface differs according to the soil and rock types. Geochemical properties of soil are reflected in the presence of organic carbon, moisture percentage, level of salinity and relevant environmental characteristics of agricultural lands (contents of sulphides, fertilisers, pesticides, etc.). Likewise, reflectance spectra of diverse rock types differs significantly, which enables to discriminate them on the satellite images using algorithms of computer vision. Therefore, we presented various combinations of the Landsat OLI/TIRS bands for analysis of land surface types on the images, as shown in Figures \ref{fig07}, \ref{fig08} and \ref{fig09}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \pagebreak
