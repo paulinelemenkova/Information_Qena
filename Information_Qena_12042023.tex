@@ -114,7 +114,7 @@ Extracting the information from the remotely sensed data can be used for complex
 
 \begin{figure}[H]
 \centering
-	\includegraphics[width=13.5 cm]{Fig_01.jpg}
+	\includegraphics[width=14.5 cm]{Fig_01.jpg}
 	\caption{Topographic map of Egypt. Target study area of \hl{the }Qena Bend region is shown in red rotated square. Software: GMT v. 6.1.1. Data source: GEBCO/SRTM. Cartography source: authors.
 	\label{fig01}}
 \end{figure}
@@ -125,7 +125,7 @@ The cumulative effects from \hl{the }wadi network and arid and semi-arid climate
 
 \begin{figure}[H]
 \centering
-	\includegraphics[width=14.0 cm]{Fig_02}
+	\includegraphics[width=14.5 cm]{Fig_02}
 	\caption{Geologic units of Egypt and the Nile River. Software: QGIS v. 3.2.2. Data source: USGS. Cartography source: authors.
 	\label{fig02}}
 \end{figure}
@@ -138,7 +138,7 @@ The occurrence of flood hazards in Upper Egypt point at the significance of the 
 
 \begin{figure}[H]
 \centering
-	\includegraphics[width=13.0 cm]{Fig_03}
+	\includegraphics[width=14.0 cm]{Fig_03}
 	\caption{Enlarged fragment of the 3D perspective view of Qena Bend, Nile River, Upper Egypt. Software: GMT v. 6.1.1. Data source: GEBCO/SRTM. Cartography source: authors.
 	\label{fig03}}
 \end{figure}
@@ -148,7 +148,11 @@ The occurrence of flood hazards in Upper Egypt point at the significance of the 
 
 \subsection{Data}
 
-Multispectral satellite images such as Landsat TM/ETM+, and OLI/TIRS) provide a valuable source of remote sensing data widely used in environmental studies of Egypt \cite{Elfadaly,Sultanetal1986,Sultanetal1987}. The reason for \hl{selecting } the Landsat OLI/TIRS images is due to their open source availability, regular global coverage and data robustness. The Landsat 8-9 OLI/TIRS scenes have 30-m resolution in multispectral channels along a 185 km swath for each image (Bands 1 to 7, used for colour composites), systematically presented, geometric, radiometrically calibrated, georeferenced using the World Geodetic System 1984 (WGS84) datum, UTM Coordinate system (Zone 36 for this case) and terrain corrected by the source provider. Such characteristics of the Landsat 8-9 images makes them a reliable and robust source of geo-information. Six Landsat OLI/TIRS scenes covering the study area with minimal cloud coverage were selected for analysis and interpretation of the land cover types. The \hl{images } were acquired in November for the Landsat-8 scenes for years 2013 to 2022 and January for Landsat-9 image for 2023. Technical characteristics and metadata of the Landsat satellite images used for image processing are summarised in Table \ref{tab1}. 
+Multispectral satellite images such as Landsat TM/ETM+, and OLI/TIRS) provide a valuable source of remote sensing data widely used in environmental studies of Egypt \cite{Elfadaly,Sultanetal1986,Sultanetal1987}. The reason for \hl{selecting } the Landsat OLI/TIRS images is due to their open source availability, regular global coverage and data robustness. The Landsat 8-9 OLI/TIRS scenes have 30-m resolution in multispectral channels along a 185 km swath for each image (Bands 1 to 7, used for colour composites), systematically presented, geometric, radiometrically calibrated, georeferenced using the World Geodetic System 1984 (WGS84) datum, UTM Coordinate system (Zone 36 for this case) and terrain corrected by the source provider. Such characteristics of the Landsat 8-9 images makes them a reliable and robust source of geo-information. 
+
+Six Landsat OLI/TIRS scenes covering the study area with minimal cloud coverage were selected for analysis and interpretation of the land cover types. \hl{The selection of different image time intervals is explained by the availability of the Landsat 8-9 OLI/TIRS with cloud-free scenes covering target area. In particular, Landsat OLI/TIRS sensor is improved against the earlier versions of Landsat products in terms of technical and spectral characteristics such as narrower spectral bands, refined radiometric resolution, better noise detection and calibration parameters} \cite{IRONS201211}. \hl{Since spectral characteristics of the older Landsat products (Landsat TM and Landsat MSS) has worse parameters, we only selected the data from the Landsat OLI/TIRS with the first images are available starting from 2013 when the first OLI/TIRS sensor was launched.} 
+
+\hl{Given the advantages of the Landsat 8-9 OLI/TIRS sensor which provide moderate-resolution scenes with multi-spectral bands available for the dates between 2013 and 2022, they were selected for this research. The time span was selected based on the availability of the data in the Qena area that demonstrate low cloudiness in winter period with the interval of 1-3 years. The images were selected in winter period to avoid impacts from the arid climate on vegetation parameters. Thus, the images} were acquired in November for the Landsat-8 scenes for years 2013 to 2022 and January for Landsat-9 image for 2023. Technical characteristics and metadata of the Landsat satellite images used for image processing are summarised in Table \ref{tab1}. 
 
 \begin{table}[H]
 \small
@@ -182,7 +186,7 @@ Besides the Landsat OLI/TIRS images, we also use the topographic and geologic gr
 
 Various land surface objects have different spectral reflectance corresponding to Digital Numbers (DN) of pixels within a given wavelength interval which corresponds to different Bands (or channels) of the Landsat images. Such \hl{an }important feature of the objects visible on the images enables \hl{their identification }by computer vision. This is \hl{made }possible using the recognition of their characteristics through the classification of Landsat Bands taken as RGB triplets of band combinations. In this study, we used different colour composites for visual analysis of the scenes and false colour composites for k-means clustering. The specific geometric curvature of the Nile River in \hl{the }Qena Bend area is perfectly visible in the Landsat images in natural colours, Figure \ref{fig05}. Here it is possible to discriminate the floodplain of the Nile River in bright green colour and a dark blue thread of the river itself contrasting against the surroundings of sands of the Western and Eastern Deserts. 
 
-The areas of dark crimson represent massifs of bare soil \hl{, while the }ivory colour indicate a complex wadi network with its typical dendritic pattern contouring the valleys, as visible in Figure \ref{fig05}. High-resolution topographic data were used for inspection of the relief in the region and visualising the geomorphology in 2D and 3D modes, while the remote sensing data were used for comparative analysis of changes in the wadi channels in the Qena Bend area and surroundings\hl{, both }by image processing and k-means clustering algorithms using R \cite{RCoreTeam}. 
+The areas of dark crimson represent massifs of bare soil\hl{, while the }ivory colour indicate a complex wadi network with its typical dendritic pattern contouring the valleys, as visible in Figure \ref{fig05}. High-resolution topographic data were used for inspection of the relief in the region and visualising the geomorphology in 2D and 3D modes, while the remote sensing data were used for comparative analysis of changes in the wadi channels in the Qena Bend area and surroundings\hl{, both }by image processing and k-means clustering algorithms using R \cite{RCoreTeam}. 
 
 \begin{figure}[H]
 \makebox[1.00\linewidth][r]{%
