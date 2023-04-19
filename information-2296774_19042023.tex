@@ -269,15 +269,15 @@ The integration of such data, as well as the analysis of the geological, geomorp
 
 The 2D and 3D maps showing the topography and geomorphic structure of the Wadi Qena region were prepared using the Generic Mapping Tools \cite{Wessel} via the existing methods of cartographic scripting \cite{Lemenkova202228}. The general workflow in R is summarized in Figure \ref{fig06}, with the listed libraries, and included the following steps of data processing. 
 
-Specifically, the workflow included the following steps (the examples below are given for the image from 2013 and repeated for all the images, respectively). First, the images were read in to the RStudio environment as a stack of {TIFF images (}.tif files{) }using the R command \emph{Landsat2013 <- list.files()}%MDPI: Please confirm if the italics is unnecessary and can be removed. please check the whole paper. % <-- Authors' reply: yes, the italics is necessary, because it is a part of the programming code. In this way, we made it different from the normal text.
-. A {subset }list of the file names was generated within a working folder on the computer. Then, the 'SpatRaster' object, which reads the raster data's spatial structure, was created as follows: \emph{landsat <- rast(Landsat2013)}. The band designations for the Landsat RGB triplets were performed using command \emph{landsatRGB <- landsat[[c(5,4,3)]]} (here, the case of false color composites).  
-
 \begin{figure}[H]
 %\centering
 	\includegraphics[width=12.0 cm]{Fig_06}
 	\caption{Methodological workflow of the processes and research steps applied in this study. Software: R version 4.2.2, 'DiagrammeR' library. Flowchart source: authors.
 	\label{fig06}}
 \end{figure}
+
+Specifically, the workflow included the following steps (the examples below are given for the image from 2013 and repeated for all the images, respectively). First, the images were read in to the RStudio environment as a stack of {TIFF images (}.tif files{) }using the R command \emph{Landsat2013 <- list.files()}%MDPI: Please confirm if the italics is unnecessary and can be removed. please check the whole paper. % <-- Authors' reply: yes, the italics is necessary, because it is a part of the programming code. In this way, we made it different from the normal text.
+. A {subset }list of the file names was generated within a working folder on the computer. Then, the 'SpatRaster' object, which reads the raster data's spatial structure, was created as follows: \emph{landsat <- rast(Landsat2013)}. The band designations for the Landsat RGB triplets were performed using command \emph{landsatRGB <- landsat[[c(5,4,3)]]} (here, the case of false color composites).  
 
 Afterwards, the image was visualized using the command \emph{plotRGB(landsatRGB, \mbox{r = 1}, \mbox{g = 2}, b = 3, axes = FALSE, stretch = "lin")} of the 'raster' library. The classification was based on the k-means clustering algorithm. The classification was run using the {following command}: \emph{unC <- unsuperClass(landsatRGB, nSamples = 100, nClasses = 10, \mbox{nStarts = 5})}. Here, the number of classes was defined as 10, {for good separation of }the land cover classes in the Wadi Bend region. We also considered a higher number of classes; however, they resulted in more coarse results. For instance, 5 and 7 classes merged several land cover classes that were evidently different, while 20 classes, in contrast, presented unnecessary partitioning of the image into subclasses that should be jointed. The color palette was defined using the 'RColorBrewer' library by \emph{colors <- jet(10)}, and the visualization of the image was performed using the command \emph{plot()}. The legend was then added using the command \emph{legend()}.
 
