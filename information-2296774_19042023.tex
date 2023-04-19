@@ -1,0 +1,1612 @@
+%  LaTeX support: latex@mdpi.com 
+%  For support, please attach all files needed for compiling as well as the log file, and specify your operating system, LaTeX version, and LaTeX editor.
+
+%=================================================================
+\documentclass[information,article,accept,pdftex,moreauthors]{Definitions/mdpi} 
+
+%=================================================================
+
+% MDPI internal commands
+\firstpage{1} 
+\makeatletter 
+\setcounter{page}{\@firstpage} 
+\makeatother
+\pubvolume{1}
+\issuenum{1}
+\articlenumber{0}
+\pubyear{2023}
+\copyrightyear{2023}
+\externaleditor{{Academic Editor: Danilo Avola}
+}
+\datereceived{6 March 2023} 
+\daterevised{11 April 2023} 
+\dateaccepted{} 
+\datepublished{} 
+\hreflink{https://doi.org/} % If needed use \linebreak
+%\doinum{}
+
+%=================================================================
+% Add packages and commands here. The following packages are loaded in our class file: fontenc, inputenc, calc, indentfirst, fancyhdr, graphicx, epstopdf, lastpage, ifthen, lineno, float, amsmath, setspace, enumitem, mathpazo, booktabs, titlesec, etoolbox, tabto, xcolor, soul, multirow, microtype, tikz, totcount, changepage, attrib, upgreek, cleveref, amsthm, hyphenat, natbib, hyperref, footmisc, url, geometry, newfloat, caption
+
+\graphicspath{{figures/}} % path to folder with figures
+\usepackage[labelformat=simple]{subcaption}
+\renewcommand\thesubfigure{\alph{subfigure}}
+
+\DeclareCaptionLabelFormat{subcaptionlabel}{\normalfont(\textbf{#2}\normalfont)}
+
+\captionsetup[subfigure]{labelformat=subcaptionlabel}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{gensymb} % for \textdegree
+\usepackage{tabularx}
+\usepackage{makecell}
+\usepackage{array}
+\newcolumntype{?}{!{\vrule width 1pt}}
+
+%=================================================================
+% Full title of the paper (Capitalized)
+%\Title{Land Features Recognition in Qena Bend of the Nile River, Egypt Using Unsupervised Classification of the Landsat Images by R}
+\Title{Recognizing the Wadi Fluvial Structure and Stream Network in the Qena Bend of the Nile River, Egypt, on Landsat 8-9 OLI Images}
+%Please confirm title changes.
+
+% MDPI internal command: Title for citation in the left column
+\TitleCitation{Recognizing the Wadi Fluvial Structure and Stream Network in the Qena Bend of the Nile River, Egypt, on Landsat 8-9 OLI Images}
+
+% Author Orchid ID: enter ID or remove command
+\newcommand{\orcidauthorA}{0000-0002-5759-1089} % Polina Add \orcidA{} behind the author's name
+\newcommand{\orcidauthorB}{0000-0002-6461-1551} % Olivier Add \orcidB{} behind the author's name
+
+% Authors, for the paper (add full first names)
+\Author{\hl{Polina} %MDPI: Please carefully check the accuracy of names and affiliations.
+ Lemenkova *\orcidA{} and Olivier Debeir \orcidB{}}
+
+%\longauthorlist{yes}
+
+% MDPI internal command: Authors, for metadata in PDF
+\AuthorNames{Polina Lemenkova and Olivier Debeir}
+
+% MDPI internal command: Authors, for citation in the left column
+\AuthorCitation{\hl{Lemenkova}%MDPI: Please carefully check the accuracy of names and affiliations.
+, P.; Debeir, O.}
+% If this is a Chicago style journal: Lastname, Firstname, Firstname Lastname, and Firstname Lastname.
+
+% Affiliations / Addresses (Add [1] after \address if there is only one affiliation.)
+\address[1]{%
+ Laboratory of Image Synthesis and Analysis (LISA), École Polytechnique de Bruxelles (Brussels Faculty of Engineering), Université Libre de Bruxelles (ULB), Building L, Campus du Solbosch, ULB---LISA CP165/57, Avenue Franklin D. Roosevelt 50, 1050 Brussels, Belgium; olivier.debeir@ulb.be
+}
+
+% Contact information of the corresponding author
+\corres{\hangafter=1 \hangindent=1.05em \hspace{-0.82em}Correspondence: polina.lemenkova@ulb.be; Tel.: +32-471-86-04-59}
+
+% Abstract
+\abstract{With {methods for processing }remote sensing data  {becoming widely available}, the ability to  {quantify }changes in spatial data and {to evaluate the } distribution of diverse landforms across target areas in datasets becomes {increasingly }important. One way to approach this problem is through satellite image processing. In this paper, we primarily focus on the methods of the unsupervised classification of the Landsat OLI/TIRS images covering the region of the Qena governorate in Upper Egypt. The Qena Bend of the Nile River presents a remarkable morphological feature in Upper Egypt, including a dense drainage network of wadi aquifer systems and plateaus largely dissected by numerous valleys of dry rivers. To identify the fluvial structure and stream network of the Wadi Qena region, this study addresses the problem of {interpreting the relevant space-borne data using R, with an aim to visualize } the land surface structures corresponding to various land cover types. {To this effect, high-resolution } 2D and 3D topographic and geologic maps were used for {the }analysis of the geomorphological setting of the Qena region. The information was extracted from the space-borne data for the comparative analysis of the distribution of wadi streams in  {the }Qena Bend area  {over }several years: 2013, 2015, 2016, 2019, 2022, and 2023. Six images were processed using {computer vision methods made available }by R libraries. The results of the \emph{k}-means clustering of each scene retrieved from the multi-temporal images covering the Qena Bend of the Nile River were  {thus }compared to visualize changes in landforms caused by the cumulative effects of geomorphological disasters and climate--environmental processes. The proposed  {method, tied together through the use }of R scripts{, }runs effectively and performs favorably in computer vision  {tasks } aimed at geospatial image processing and the analysis of remote sensing data.} 
+
+% Keywords
+\keyword{Africa; k-means clustering; image processing; remote sensing; unsupervised classification; programming; visualization; modeling; computer vision; cartography} 
+
+\PACS{91.10.Da; 91.10.Jf; 91.10.Sp; 91.10.Xa; 96.25.Vt; 91.10.Fc; 95.40.+s; 95.75.Qr; 95.75.Rs; 42.68.Wt}
+\MSC{86A30; 86-08; 86A99; 86A04}
+\JEL{Y91; Q20; Q24; Q23; Q3; Q01; R11; O44; O13; Q5; Q51; Q55; N57; C6; C61}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+\section{Introduction}
+
+\subsection{{Background}}
+Satellite images are frequently used as a source of geoinformation for the mapping of land cover types and recognizing land features. Examples of such applications include thematic maps made using the classification of satellite images; these include, for instance, maps of mineral resources \cite{ABDELKAREEM2018682,1294518,rs11121450}, environmental assessment \cite{615837,Lemenkova202227}, land cover/land use classification~\cite{516791,Lemenkova202229}, geologic analysis \cite{6723607,KAMEL2022104420}, and urban mapping \cite{MOHAMED2019103507}. The success of the remote sensing data in cartographic processing and mapping is based on the effectiveness of the satellite imagery as a source of information for the recognition of diverse land features and processes. 
+
+Among the advantages of {using }the high-resolution {space-borne }data as a source of information{, }one can mention the improved quality of spatial visualization \cite{ABDALLA20128,Lemenkova202230}, and the enabled access to remotely located places and areas otherwise inaccessible, such as deserts~\cite{6350376}. For such places, satellite {imagery }presents a valuable source of information. Apart from spatial access, satellite images {facilitate }the temporal analysis of environmental changes or disaster monitoring using {the } comparative analysis of several scenes. For instance, the comparison of several satellite images covering a target region in different time periods enables us to perform time series analysis, which can be used in detecting climate and environmental changes {or }monitoring disaster events{. A similar image-to-image comparison can also help in assessing} the risks of hazards, and to perform ecological surveillance of the target study area using multi-temporal data analysis \cite{9171725,SINGH2020423,Hashim}. 
+
+Applications of remote sensing data in Earth sciences include monitoring desertification and land degradation \cite{Badreldin,Kawy}, the analysis of deforestation \cite{516791}, the evaluation of salinization~\cite{8949893} and soil erosion \cite{Gad2020}, hydrological modeling and the quantification of the flooded areas~\cite{TAHA2017157,ELSADEK2019377}, and many more. The spectral patterns of the multispectral Landsat images are especially widely used in geosciences as a source of spatial information for land cover mapping and the recognition of land features \cite{8486245}. To this end, the geometric, radiometric, and spectral precision of the Landsat scenes can be enhanced through a combination of the high-resolution panchromatic and multispectral channels by fusion methods \cite{4420687}.
+
+Natural resource monitoring benefits from the use of satellite images, which provide a powerful source of information for detecting environmental processes \cite{Khafagy}. {Furthermore}, identifying lithologic land surface structures and extracting extracted structural lineaments is possible using computer vision techniques \cite{Bishta,Kusky,Salman}. For instance, research on mineral exploration can be supported using the classified satellite images to discriminate lithological units on the color composites of the images in various ratios \cite{Shalaby}. For geomorphological modeling, the Shuttle Radar Topography Mission (SRTM) Digital Elevation Model (DEM) can be overlaid with satellite images \cite{Liping}. Such data integration enables us to identify the morphometric parameters of the river catchment and drainage area, and to examine the spatial distribution of the agricultural fields with regard to the fluvial networks \cite{6265340}. 
+
+Information derived from the classified satellite images enables us to perform the assessment of geomorphological and geological risks to define maps of hazards. This includes the problem of morphometric modeling using remote sensing data for the identification of geologic hazards, as widely investigated in the cartography, geoinformatics, and Earth science communities. Hamdan and Khozyem \cite{Hamdan} applied the Advanced Spaceborne Thermal Emission and Reflection Radiometer (ASTER) data and Geographic Information System (GIS) techniques to delineate drainage networks in the Wadi El-Mathula watershed in the Central Eastern Desert. Various methods of geomorphometric modeling exist and can be applied to detect the spatial patterns of fluvial systems, or for hydrogeological modeling aimed at the analysis of groundwater potential \cite{Issawi,Abdalla2020,Gaber}. The geometry and morphology of the relief and the characteristics of topographic parameters such as slope, aspect, and hillshade can be extracted as morphometric characteristics for the analysis of watersheds using 3D mapping \cite{Lemenkova202301}. 
+
+Extracted information from remotely sensed data can be used for complex hydrological analysis---for instance, predicting wadi flash floods using morphometric parameters that represent the topographic and drainage characteristics of the basins using GIS \cite{w9070553}. Further, such information can be used for the analysis of wadi networks to define basin boundaries and drainage networks, to evaluate the stream channel density, and to model slope and flow directions. Moreover, it is useful for the retrospective modeling of the hydrological processes in the past, to better analyze the geologic setting in {the present,} using robust remote sensing data. Such an approach enables deeper insights into the structure of the land surface visible from the {space-borne} data \cite{abdelkareem2013integration,AbdelkareemFarouk}. 
+
+{Moreover}, the essential geographic information collected from satellite imagery is useful for operative flash flood monitoring{, through integrating} data on physiographic features. Other applications of remote sensing data include modeling lithological, geological, and structural features \cite{BESHR2021999}, mapping mineral resources \cite{Kamal}, and detecting wadi channels based on the combination of the topographic maps and satellite images \cite{Moubark}. 
+
+\subsection{{Motivation and Objectives}}
+
+{In view of the advantages of satellite images for Earth and environmental studies, the question of the most effective methods of processing these data is arising. A variety of existing works have explored the use of GIS for remote sensing data analysis. The use of ENVI GIS} \cite{ABDELSADEK2022815,GHEBREZGABHER201637,ABDELMALIK2020263} {well illustrates the traditional methods of remote sensing data processing by the use of supervised classification. More examples in existing studies have used a combination of software for satellite image processing. A prominent example of such an approach is presented by} \cite{KAMEL2016343}, {wherein the use of several GIS is applied to the relevant tasks in image processing: ArcGIS for the interpretation of the geological lineaments, Erdas Imaging for data preprocessing, and ILWIS GIS and ENVI GIS to create band color composites and for information extraction. Moreover, the integration of ArcGIS and ENVI GIS is presented in} \cite{ELDOSOUKY20201008,GABR202211} {for the processing of aeromagnetic and geologic data to map the structural complexity and mineralization in the Southern Eastern Deserts of the Upper Egypt.}
+
+{Other studies have used Erdas Imagine in processing multi-temporal remote sensing data, e.g.,} \cite{BAKR2010592,NASSERMOHAMEDEID202066} {monitored land cover changes and computed vegetation indices. Similarly,} \hl{Ref.}%MDPI: Newly added  information. Please confirm.
+~\cite{ALIBIK2022113} {presented the application of the Erdas Imaging for geological analysis through identifying rocks by their spectral signatures.} \hl{Ref.} \cite{ALIBIK2022593} {applied ArcGIS for detecting lineaments on DEM and Sentinel-2 images for the geologic analysis of Southern Sinai;} \hl{Ref.}~\cite{HOSSEN2016951} {combined ArcGIS and Erdas Imagine for multi-temporal image processing aimed at environmental impact assessment. Such methods correspond to the aim of our approach in terms of using satellite image processing in the monitoring of landscapes of Egypt; however, they are largely tied to specific niches and problem formulations, such as land cover changes, stratigraphic and petrographic analysis, and identifying rocks by the use of remote sensing data. Nevertheless, while these algorithms benefit from the use of the conventional interface in the traditional GIS software, they are limited by the largely restricted functionality of all these programs. }
+
+{In contrast to these and similar existing studies, here, }we propose an R-based {use case of }satellite image processing to address the problem of {using computer vision } for extracting geoinformation from remotely sensed {space-borne }data. The main motivation of this work is to demonstrate that land surface types can be extracted from a short time series of multispectral Landsat 8-9 OLI/TIRS images by k-means clustering{, using the libraries of the }R language. This work reports an empirical comparison of the classification of the six Landsat scenes for years 2013, 2015, 2016, 2019, 2022, and 2023 to detect changes in the identified land surface types for the target study region of the Qena Bend, Upper Egypt. Furthermore, the results report a comparison of the detected classes by Landsat bands in the false color composite (5-4-3) channels corresponding to the Near-Infrared, Red, and Green bands in the Landsat OLI/TIRS images). The results of the performed classification support the argument that satellite images can be integrated to achieve recognition of the land surface types in the complex drainage network of Wadi Qena, Upper Egypt, and this paper demonstrates {a }practical approach to achieve satellite image processing {using scripts written in the }R programming language.
+
+%\pagebreak
+\section{Prior Work}
+
+{The }Qena Bend is one of the most notable morphological features of the Nile River in Upper Egypt{, with }a unique, characteristic curvature in its geometry, {as shown in }\mbox{Figure \ref{fig01}}. The structural geomorphology of the Qena Bend largely reflects the general geologic setting of the Nile River and the major processes of its evolution \cite{Said1981,said2017geology}. The Valley of the Nile River was cut during the late Miocene of the Neogene period and formed later on as a result of the regional and local tectonics. The Qena Formation includes gravel deposits with limestone cobble and heavily weathered soil typical for old terrace deposits \cite{paulissen1987egyptian}. The remaining sediments, outcrops, and paleospecies in fossils have been identified from the Mesozoic Era (Cretaceous period) \cite{ABDELHAMID2014138,SOLIMAN1986111} and Paleogene (Paleocene and Eocene epoches) \cite{MANDUR2022104594,sehim1993cretaceous}. They are reflected in the Cenozoic sediments accumulated in the lacustrine--alluvial fans around the Qena Bend due to the Nile River's evolution in the Neogene; see Figure \ref{fig02}.
+
+\vspace{-6pt}
+\begin{figure}[H]
+%\centering
+	
+\begin{adjustwidth}{-\extralength}{0cm}
+\centering %% If there is a figure in wide page, please release command \centering
+\includegraphics[width=16.5 cm]{Fig_01.jpg}
+\end{adjustwidth}
+	\caption{Topographic map of Egypt. Target study area of {the }Qena Bend region is shown in red rotated square. Software: GMT v. 6.1.1. Data source: GEBCO/SRTM. Cartography source: authors.
+	\label{fig01}}
+\end{figure}
+
+Apart from the geology and hydrology of the Nile River, the region of the Qena Bend is influenced by the presence of the Eastern Desert, which has a unique climate. Its major features include occasional extreme flash floods---one of the most severe natural disasters. Flash floods occur annually, mostly during spring and autumn, and are caused by torrential rainfall followed by the disastrous surface runoff thereafter \cite{Moawad}. Such climate processes, aggravated by an interrelated complex of fluvial networks in the Wadi Qena catchment area, as briefly explained above, present favorable conditions for disastrous flash floods. During such events, a complex of the ephemeral rivers that is dry during most of the year is being filled with water from heavy showers and rains \cite{ElFakharany}.
+
+
+
+\begin{figure}[H]
+%\centering
+\begin{adjustwidth}{-\extralength}{0cm}
+\centering %% If there is a figure in wide page, please release command \centering
+
+
+	\includegraphics[width=16.5 cm]{Fig_02}
+	\end{adjustwidth}
+	\caption{\hl{Geologic} %MDPI: Please use periods as decimal signs instead of commas, e.g., "0,10" should be "0.0".
+ units of Egypt and the Nile River. Software: QGIS v. 3.2.2. Data source: USGS. Cartography source: authors.
+	\label{fig02}}
+\end{figure}
+
+
+The cumulative effects from {the }wadi network and the arid and semi-arid climate of the Eastern Desert region {result }in occasional flash flood events and irregular sand dust storms with different durations and intensities. Flash floods {occur }in diverse regions across  Egypt, including Upper Egypt with the Eastern Desert \cite{ElHaddad,Elsadek}, the Southern Red Sea Coast \cite{Abdalla2014}, the Sinai Peninsula \cite{ELOSTA2021101522}, and the Gulf of Suez \cite{AbdelLattif}. The social consequences of flash floods include damaged infrastructure, transport routes, and buildings, and occasional victims \cite{Moawad}. El-Magd et al. report the catastrophic events of flash floods in the Qena governorate recorded from three consecutive events in 2014--2016 \cite{ElMagd}. 
+
+As a result of the geologic evolution, the geomorphology of the Qena Bend region presents a plateau largely dissected by numerous valleys of wadi and geologic lineaments, which dissect the cliffs of the Nile River and the basement plateau composed of the limestone and chalks \cite{BANDEL1987427}. This results in a specific geomorphic pattern in the Qena Bend's surroundings, which is notable for its complex drainage network of wadi aquifer systems \cite{Alkholy,AbdelMoneim,HUSSIEN201773}. This drainage network represents a typical feature of the Eastern Desert, which consists of numerous fluvial basins that drain the rainwater towards the Nile River or the Red Sea \cite{Abdel}.
+
+The major geomorphic structure of the Nile Valley follows the faults oriented parallel to the Red Sea along the central current of the Nile and the Gulf of Suez in the north \cite{Ali2022,Youssef2003StructuralSO}, with the relics of the pre-late Miocene streams remaining in the fluviatile sand and gravel sediments of the Nile delta in Lower Egypt \cite{Said1981a}. The discovery of paleorivers in the Sahara by radar imaging systems {revealed} the orientation of the paleochannels and their flow directions \cite{ABDELKAREEM201235}. During the Neogene, it is argued \cite{PHILOBBOS2015194} that the ancient Qena Lake broke up the Nile River's course, which might have affected its present form and specific geometric curvature; see Figure \ref{fig03}.
+
+The occurrence of flood hazards in Upper Egypt points at the significance of the application of geoinformation for the visualization and mapping of regions prone to flooding. The remote sensing data and advanced methods of spatial data processing present robust approaches to the evaluation of relief and the extraction of information on relief and topographic characteristics from satellite images using the methods of computer vision. Such approaches can be used, for {instance, for }vulnerability mapping or the identification of areas with high geomorphological hazards and {exposure }to floods \cite{nhess-9-751-2009}.
+
+\begin{figure}[H]
+%\centering
+	
+\begin{adjustwidth}{-\extralength}{0cm}
+\centering %% If there is a figure in wide page, please release command \centering
+\includegraphics[width=14.5 cm]{Fig_03}
+\end{adjustwidth}
+	\caption{Enlarged fragment of the 3D perspective view of Qena Bend, Nile River, Upper Egypt. Software: GMT v. 6.1.1. Data source: GEBCO/SRTM. Cartography source: authors.
+	\label{fig03}}
+\end{figure}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Materials and Methods}
+
+\subsection{Data}
+
+\textls[-15]{Multispectral satellite images such as Landsat TM/ETM+ and OLI/TIRS) provide a valuable source of remote sensing data widely used in environmental studies of Egypt~\mbox{\cite{Elfadaly,Sultanetal1986,Sultanetal1987}}}. The reason for {selecting } the Landsat OLI/TIRS images is due to their open-source availability, regular global coverage, and data robustness. The Landsat 8-9 OLI/TIRS scenes have a 30 m resolution in multispectral channels along a 185 km swath for each image (Bands 1 to 7, used for color composites); they are systematically presented, geometrically and radiometrically calibrated, and georeferenced using the World Geodetic System 1984 (WGS84) data, UTM coordinate system (Zone 36 for this case), and terrain corrected by the source provider. Such characteristics of the Landsat 8-9 images make them a reliable and robust source of geoinformation. 
+
+Six Landsat OLI/TIRS scenes covering the study area with minimal cloud coverage were selected for the analysis and interpretation of the land cover types. {The selection of different image time intervals is explained by the availability of the Landsat 8-9 OLI/TIRS with cloud-free scenes covering the target area. In particular, the Landsat OLI/TIRS sensor is improved against the earlier versions of Landsat products in terms of technical and spectral characteristics, such as narrower spectral bands, a refined radiometric resolution, and better noise detection and calibration parameters} \cite{IRONS201211}. {Since the spectral characteristics of the older Landsat products (Landsat TM and Landsat MSS) contain worse parameters, we only selected the data from the Landsat OLI/TIRS with the first images available starting from 2013, when the first OLI/TIRS sensor was launched.} 
+
+{Given the advantages of the Landsat 8-9 OLI/TIRS sensor, which provides moderate-resolution scenes with multispectral bands available for the dates between 2013 and 2022, they were selected for this research. The time span was selected based on the availability of the data in the Qena area that demonstrate low cloudiness in the winter period with an interval of 1-3 years. The images were selected from the winter period to avoid impacts of the arid climate on vegetation parameters. Thus, the images} were acquired in November for the Landsat-8 scenes for years 2013 to 2022 and January for Landsat-9 images for 2023. The technical characteristics and metadata of the Landsat satellite images used for image processing are summarized in Table \ref{tab1}. 
+
+\begin{table}[H]
+\small
+\caption{\hl{Satellite} %MDPI: We removed extra vertical lines, please confirm. Same as all the following tables.
+ images used for computing the VIs: Landsat-8 OLI/TIRS collected from the USGS~\textsuperscript{1}.\label{tab1}}
+	\begin{adjustwidth}{-\extralength}{0cm}
+%		\newcolumntype{C}{>{\centering\arraybackslash}X}
+		\begin{tabularx}{\fulllength}{ p{1.6cm}p{1.8cm}p{7.0cm} p{4.0cm} p{2.0cm} }
+			\toprule
+			\textbf{Date} & \textbf{Spacecraft} & \textbf{Landsat Product ID} & \textbf{Scene ID} & \textbf{Cloudiness} \\
+			\midrule
+			\hl{2013/11/16} %MDPI: we suggest use the format like 'Day Month Year', for example, `16 November 2013`, please check and revise the whole paper.
+ & Landsat 8 & \makecell{LC08\_L2SP\_175042\_20131116\_20200912\_02\_T1} & LC81750422013320LGN01 & 0.89 \\
+			\hl{2015/11/22} & Landsat 8 & \makecell{LC08\_L2SP\_175042\_20151122\_20200908\_02\_T1} & LC81750422015326LGN01 & 0.05 \\
+			\hl{2016/11/08} & Landsat 8 & \makecell{LC08\_L2SP\_175042\_20161108\_20200905\_02\_T1} & LC81750422016313LGN01 & 0.31 \\
+			\hl{2019/11/17} & Landsat 8 & \makecell{LC08\_L2SP\_175042\_20191117\_20200825\_02\_T1} & LC81750422019321LGN00 & 1.16 \\
+			\hl{2022/11/09} & Landsat 8 & \makecell{LC08\_L2SP\_175042\_20221109\_20221121\_02\_T1} & LC81750422022313LGN00 & 0.02 \\
+			\hl{2023/01/20} & Landsat 9 & \makecell{LC09\_L2SP\_175042\_20230120\_20230122\_02\_T1} & LC91750422023020LGN01 & 0.32 \\	
+			\bottomrule
+		\end{tabularx}
+	\end{adjustwidth}
+	\noindent{\footnotesize{\textsuperscript{1} The sensor ID is common for all the scenes: Landsat 8-9 OLI/TIRS (Operational Land Imager and Thermal Infrared Sensor), Collection 2 Level 2. Path/row parameters common for all the images: 175/42. Coverage: Qena Bend, the Nile River, Upper Egypt. Image source: the USGS.}}
+\end{table}
+
+Besides the Landsat OLI/TIRS images, we also use the topographic and geologic grids to map the study area and analyze the geomorphology in 2D and 3D formats. The interpretation of these ancillary data helps to analyze and verify the impact of the geologic processes and lithological structure in the temporal variations in land cover and surface structure. In such a way, this work is based on the use of two major types of data: six satellite Landsat 8-9 OLI/TIRS images and topographic--geological datasets; see Figure \ref{fig04}. 
+
+\begin{figure}[H]
+%\centering
+	\includegraphics[width=13.8 cm]{Fig_04}
+	\caption{Data sources: summary of the materials used in this study. Software: R version 4.2.2, 'Mermaid' library. Flowchart source: authors.
+	\label{fig04}}
+\end{figure}
+
+Various land surface objects have different spectral reflectance corresponding to the Digital Numbers (DN) of pixels within a given wavelength interval, which corresponds to different bands (or channels) of the Landsat images. Such {an }important feature of the objects visible on the images enables {their identification }by computer vision. This is {made }possible using the recognition of their characteristics through the classification of Landsat bands taken as RGB triplets of band combinations. In this study, we used different color composites for the visual analysis of the scenes and false color composites for k-means clustering. The specific geometric curvature of the Nile River in {the }Qena Bend area is perfectly visible in the Landsat images in natural colors; see Figure \ref{fig05}. Here, it is possible to discriminate the floodplain of the Nile River in a bright green color and the dark blue thread of the river itself contrasting against the surroundings of the sands of the Western and Eastern Deserts. 
+
+The areas of dark crimson represent massifs of bare soil{, while the }ivory color indicates a complex wadi network with its typical dendritic pattern contouring the valleys, as visible in Figure \ref{fig05}. High-resolution topographic data were used for the inspection of the relief in the region and to visualize the geomorphology in 2D and 3D modes, while the remote sensing data were used for the comparative analysis of changes in the wadi channels in the Qena Bend area and surroundings{, both }by image processing and k-means clustering algorithms using R \cite{RCoreTeam}. 
+
+\begin{figure}[H]
+\makebox[1.00\linewidth][r]{%
+	\begin{subfigure}[b]{.40\textwidth}
+		\centering
+			\includegraphics[width=0.87\textwidth]{Fig_05a.jpg}
+		\caption{\centering2013}
+	\end{subfigure}%
+	\begin{subfigure}[b]{.40\textwidth}
+		\centering
+		\includegraphics[width=0.87\textwidth]{Fig_05b.jpg}
+		\caption{\centering2015}
+	\end{subfigure}%
+	\begin{subfigure}[b]{.40\textwidth}
+		\centering
+		\includegraphics[width=0.87\textwidth]{Fig_05c.jpg}
+		\caption{\centering2018}
+	\end{subfigure}%
+}\\
+\vfill \vspace{1mm}
+\makebox[1.00\linewidth][r]{%
+	\begin{subfigure}[b]{.40\textwidth}
+		\centering
+			\includegraphics[width=0.87\textwidth]{Fig_05d.jpg}
+		\caption{\centering2020}
+	\end{subfigure}%
+	\begin{subfigure}[b]{.40\textwidth}
+		\centering
+		\includegraphics[width=0.87\textwidth]{Fig_05e.jpg}
+		\caption{\centering2021}
+	\end{subfigure}%
+	\begin{subfigure}[b]{.40\textwidth}
+		\centering
+		\includegraphics[width=0.87\textwidth]{Fig_05f.jpg}
+		\caption{\centering2022}
+	\end{subfigure}%
+}\caption{Qena Bend of the Nile River, Egypt, visible on Landsat 8-9 OLI/TIRS images in natural RGB color for six years: (\textbf{a}) \hl{2013/12/20}%MDPI: we suggest use the format like 'Day Month Year', for example, `16 November 2013`, please check and revise the whole paper.
+, (\textbf{b}) \hl{2015/12/26}, (\textbf{c}) \hl{2018/02/21}, (\textbf{d}) \hl{2020/01/22}, (\textbf{e}) \hl{2021/12/18}, (\textbf{f}) \hl{2022/12/29}.}\label{fig05}
+\end{figure}
+
+%----------- subsection ----------->
+\subsection{Methods}
+
+\subsubsection{Research Concept and Advantages}
+
+{The concept of the performed research includes data selection and collection from the USGS repository, data processing by clustering methods, analysis, and interpretation of the obtained results. After data capture, cartographic visualization, and image preprocessing, clustering is the major step in the research workflow. The essential approach of clustering is that it partitions the dataset into several clusters (or groups) of pixels using algorithms of data partition. Diverse types of clustering techniques exist in data analysis, with their own strengths and weaknesses, due to the complexity of information} \cite{XuTian}. {Some examples of clustering include the algorithms that identify centroids, density, or distribution in a dataset, which enable us to split the data into several groups according to the distance of each particular pixel to the center of the cluster. Currently, clustering techniques are widely used in programming tools including machine learning} \cite{CHANDER2023179}.
+
+{In spatial data analysis, clustering is used for image analysis as a tool for unsupervised classification. A clustering algorithm separates pixels in the image into several groups (or clusters) according to their spectral signatures and assigns these pixels to the defined clusters. The most well-known algorithm for clustering is k-means. Other examples include hierarchical clustering} \cite{ZHIYING2023101935,XIE2023109230}, {partition clustering} \cite{ZEIN2023100731}, {fuzzy clustering} \cite{ROY2012452}, {mean shift} \cite{GUO201828,BECK2019128}, {density-based clustering} \cite{CHENG2023170,MAHESHWARI2023109341}, {model-based clustering} \cite{YOU2022107457}, and {Density-Based Spatial Clustering of Applications with Noise (DBSCAN)} \cite{OUYANG2022688,PRANATA2023319,WU202257}. 
+
+{In this study, we used the k-means algorithm of R, which defines clusters of pixels in the image based on their similar features and is embedded in the R programming language}~\cite{FAVERO2023193}. {The concept of k-means clustering includes the iterative process of evaluation of pixels' values, wherein each point is assigned to a specific cluster group corresponding to a defined number of clusters. This approach is straightforward, implemented by the 'raster' package, and accurately classifies the data in the satellite image. k-means performs the simplification of the large massifs of pixels in the image by partitioning them into groups (e.g., land cover types). The advantages of the k-means concept include easy adaptability to new datasets and a relatively straightforward algorithm of implementation in R, which enables us to process the dataset in a few seconds.}
+
+\subsubsection{Data Processing Workflow}
+
+The 2D and 3D maps showing the topography and geomorphic structure of the Wadi Qena region were prepared using the Generic Mapping Tools \cite{Wessel} via the existing methods of cartographic scripting \cite{Lemenkova202228}. The general workflow in R is summarized in Figure \ref{fig06}, with the listed libraries, and included the following steps of data processing. 
+
+
+Specifically, the workflow included the following steps (the examples below are given for the image from 2013 and repeated for all the images, respectively). First, the images were read in to the RStudio environment as a stack of {TIFF images (}.tif files{) }using the R command \hl{\emph{Landsat2013 <- list.files()}}%MDPI: Please confirm if the italics is unnecessary and can be removed. please check the whole paper.
+. A {subset }list of the file names was generated within a working folder on the computer. Then, the 'SpatRaster' object, which reads the raster data's spatial structure, was created as follows: \emph{landsat <- rast(Landsat2013)}. The band designations for the Landsat RGB triplets were performed using command \emph{landsatRGB <- landsat[[c(5,4,3)]]} (here, the case of false color composites).  
+
+Afterwards, the image was visualized using the command \emph{plotRGB(landsatRGB, \mbox{r = 1}, \mbox{g = 2}, b = 3, axes = FALSE, stretch = "lin")} of the 'raster' library. The classification was based on the k-means clustering algorithm. The classification was run using the {following command}: \emph{unC <- unsuperClass(landsatRGB, nSamples = 100, nClasses = 10, \mbox{nStarts = 5})}. Here, the number of classes was defined as 10, {for good separation of }the land cover classes in the Wadi Bend region. We also considered a higher number of classes; however, they resulted in more coarse results. For instance, 5 and 7 classes merged several land cover classes that were evidently different, while 20 classes, in contrast, presented unnecessary partitioning of the image into subclasses that should be jointed. The color palette was defined using the 'RColorBrewer' library by \emph{colors <- jet(10)}, and the visualization of the image was performed using the command \emph{plot()}. The legend was then added using the command \emph{legend()}.
+
+\begin{figure}[H]
+%\centering
+	\includegraphics[width=12.0 cm]{Fig_06}
+	\caption{Methodological workflow of the processes and research steps applied in this study. Software: R version 4.2.2, 'DiagrammeR' library. Flowchart source: authors.
+	\label{fig06}}
+\end{figure}
+
+
+
+The triplets of Bands 5 (Near Infrared), 4 (Red), and 3 (Green) were selected for the following reasons. Healthy vegetation has high absorption in Red (Band 4) and high reflectance in Green (Band 3) and NIR (Band 5). Therefore, such a combination helps to better discriminate vegetation areas in the floodplain of the Nile from soil, sandy, and desert areas in the Western and Eastern Deserts, as well as the wadi valleys. In contrast, soil has lesser reflectance spectra in NIR because its reflectance changes along with the wavelength{, which is why }such a combination of bands was used {instead for the calculation and clustering }of the pixels of various land cover classes based on their distinct spectral signatures. {Additionally, all }the maps derived from the clustering of the satellite images were georeferenced automatically with metadata identified by R library 'raster': WGS84 datum, UTM coordinate system Zone 36.
+
+Nevertheless, {the }spectral signature of the land surface differs according to the soil and rock types. The geochemical properties of soil are reflected in the presence of organic carbon, the moisture percentage, the level of salinity, and the relevant environmental characteristics of agricultural land (content of sulfides, fertilizers, pesticides, etc.). Likewise, the reflectance spectra of diverse rock types {differ }significantly, which enables us to discriminate them on the satellite images using algorithms of computer vision. Therefore, we considered various combinations of the Landsat OLI/TIRS bands for the analysis of land surface types in the images, as shown in Figures \ref{fig07}--\ref{fig09}.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Results}
+
+In this paper, the classified land cover maps were plotted via the unsupervised classification of k-means clustering methods and the statistics of pixel assignments are summarized in Table \ref{tab2}. {In the discrimination of land cover types, the spectral signatures of the satellite images are taken as markers to distinguish the landscape features based on their texture, shape, and size. In this case, color composites created based on the band combination of the Landsat images are included in the data processing and clustering. }The results of the clustering include the defined 10 classes best representing the land surface structure and corresponding to the following items modified and generalized from the existing study~\cite{Kamel}: \emph{(1) floodplain of the Nile River; (2) silt sediments; (3) wadi deposits; (4) gritty and gravel soil;  (5) sandy soils; (6) fine sand, silty and clay soil; (7) gravel and stony soil; (8) terrace soils and stony debris; (9)~limestone foothills; 
+(10) limestone rock land}. 
+
+{The information was retrieved from the analysis of clustering implemented on the Landsat satellite images that represents the multi-component structure of the Earth's surface and different types of landscapes. }The Landsat 8-9 OLI/TIRS images were differentiated {using clustering techniques, which enabled us to analyze the images in terms of the spatial distribution of pixels with different values according to their spectral signatures. The }land cover types of the Qena Bend region were recognized automatically by R for the years 2013, 2015, 2016, 2019, 2022, and 2023. The dimensions of all the images are identical for all the Landsat scenes and correspond to 7801 rows, 7651 columns, and 59,685,451~cells (or pixels) with a resolution of 30 \hl{$\times$} %MDPI: We revised the letter "x" into a multiplication sign ("\times" U+00D7). Please confirm.
+ 30~m, i.e., each pixel on the image corresponds to a 30~m patch size on the land surface. Thus, the number of pixels computed for each ID class gives the area of the land cover type with respective changes over the years. The statistics of pixels assigned to the land cover ID classes are based on the spectral signature of the DN of the pixels; see Table \ref{tab2}. {Correspondingly}, Tables \ref{tab3}--\ref{tab5} show the detected numbers of pixels for each land cover ID class  in the Qena Bend region, for a quantitative pairwise comparison for the years 2013 and 2015, 2016 and 2019, and 2022 and 2023, respectively. 
+
+\begin{table}[H]
+\small
+\caption{\hl{Results}
+ of the k-means classification of the Landsat-8 OLI images for Qena Bend area \textsuperscript{1}.\label{tab2}}
+	\begin{adjustwidth}{-\extralength}{0cm}
+		\begin{tabularx}{\fulllength}{CCCCCCC}
+			\toprule
+			\textbf{Class ID} & \textbf{2013} & \textbf{2015} & \textbf{2016} & \textbf{2019} & \textbf{2022} & \textbf{2023} \\
+			\midrule
+			1 & 6,237,758.6 & 25,058,427 & 11,830,859 & 11,050,520 & 33,773,365.2 & 22,414,794 \\
+			2 & 26,530,972.6 & 3,829,403 & 6,847,520 & 7,687,698 & 21,467,288.5 & 4,080,038 \\
+			3 & 46,356,528.0 & 23,160,871 & 13,056,437 & 31,925,587 & 466,472.5 & 13,918,989 \\
+			4 & 10,314,256.8 & 7,458,695 & 12,594,525 & 3,359,878 & 3,547,592.0 & 1,863,680 \\
+			5 & 7,861,914.8 & 9,909,609 & 3,012,708 & 11,101,016 & 7,714,730.1 & 6,083,803 \\
+			6 & 625,035.3 & 4,568,955 & 2,195,275 & 14,290,386 & 9,346,294.4 & 14,743,313 \\
+			7 & 22,694,195.3 & 3,019,950 & 12,277,811 & 14,898,378 & 6,978,872.8 & 6,370,890 \\
+			8 & 5,804,917.1 & 1,942,973 & 10,144,633 & 5,386,949 & 16,906,933.2 & 6,053,497 \\
+			9 & 7,320,502.4 & 13,450,745 & 3,220,846 & 5,501,193 & 8,429,786.2 & 11,952,344 \\
+			10 & 6,121,676.5 & 10,228,437 & 4,195,904 & 10,594,134 & 11,161,798.4 & 10,517,903 \\	
+			\bottomrule
+		\end{tabularx}
+	\end{adjustwidth}
+	\noindent{\footnotesize{\textsuperscript{1} Sum of squares by clusters within computed cluster centroids.}}
+\end{table}
+
+\vspace{-14pt}
+
+\begin{table}[H]
+\small
+\caption{\hl{Pairwise} 
+ comparison of the k-means classification for Bands 5-4-3 of the Landsat-8 OLI/TIRS images for 2013 and 2015 in Qena Bend region \textsuperscript{1}.\label{tab3}}
+	\begin{adjustwidth}{-\extralength}{0cm}
+		\begin{tabularx}{\fulllength}{CCCCCCC}
+			\toprule
+			\multirow{2}{*}{\textbf{\emph{\hl{Class ID} %MDPI: Please check if the italics in table header is necessary, if not, please remove.
+}}} & \multicolumn{3}{c}{\textbf{2013}} & \multicolumn{3}{c}{\textbf{2015}} \\ 
+			\textbf{} & \textbf{\emph{Band 5}} & \textbf{\emph{Band 4}} & \textbf{\emph{Band 3}} & \textbf{\emph{Band 5}} & \textbf{\emph{Band 4}} & \textbf{\emph{Band 3}} \\
+			\midrule
+			1 & 21,019.08 & 18,348.92 & 15,722.58 & 19,819.50 & 17,226.143 & 14,765.14 \\
+			2 & 21,956.38 & 19,148.12 & 16,294.50 & 12,087.00 & 10,917.333 & 10,115.00 \\
+			3 & 26,892.38 & 23,105.00 & 19,120.92 & 18,736.17 & 9956.333 & 10,142.17 \\
+			4 & 14,308.50 & 13,163.75 & 11,730.75 & 24,835.46 & 21,496.385 & 17,990.38 \\
+			5 & 19,246.50 & 16,942.69 & 14,626.81 & 23,315.56 & 20,178.688 & 17,043.31 \\
+			6 & 17,656.18 & 15,405.09 & 13,460.00 & 26,302.78 & 22,807.222 & 19,156.67 \\
+			7 & 23,465.45 & 20,280.18 & 17,179.82 & 15,028.50 & 13,507.500 & 12,109.33 \\
+			8 & 16,549.67 & 10,211.17 & 10,132.83 & 29,412.00 & 25,219.500 & 20,731.50 \\
+			9 & 22,484.00 & 19,481.25 & 16,802.50 & 17,737.46 & 15,833.385 & 13,783.23 \\
+			10 & 24,895.53 & 21,740.20 & 18,326.47 & 17,737.46 & 18,747.389 & 15,990.33 \\	
+			\bottomrule
+		\end{tabularx}
+	\end{adjustwidth}
+	\noindent{\footnotesize{\textsuperscript{1} Clusters are computed for each band in the composite triplet: Band 5 (NIR), Band 4 (Red), and Band 3 (Green).}}
+\end{table}
+
+\vspace{-14pt}
+\begin{table}[H]
+\small
+\caption{\hl{Pairwise} comparison of the k-means classification for Bands 5-4-3 of the Landsat-8 OLI/TIRS images for 2016 and 2019 in Qena Bend region \textsuperscript{1}.\label{tab4}}
+	\begin{adjustwidth}{-\extralength}{0cm}
+		\begin{tabularx}{\fulllength}{CCCCCCC}
+			\toprule
+			\multirow{2}{*}{\textbf{\emph{Class ID}}} & \multicolumn{3}{c}{\textbf{2016}} & \multicolumn{3}{c}{\textbf{2019}} \\
+			\textbf{} & \textbf{\emph{Band 5}} & \textbf{\emph{Band 4}} & \textbf{\emph{Band 3}} & \textbf{\emph{Band 5}} & \textbf{\emph{Band 4}} & \textbf{\emph{Band 3}} \\
+			\midrule
+			1 & 25,067.53 & 21,805.82 & 18,283.65 & 20,721.42 & 18,438.42 & 15,725.33 \\
+			2 & 19,837.27 & 17,506.45 & 15,060.45 & 24,198.84 & 21,005.26 & 17,763.84 \\
+			3 & 27,148.44 & 23,483.89 & 19,596.67 & 25,536.93 & 22,109.73 & 18,481.20 \\
+			4 & 16,049.43 & 13,237.00 & 11,880.43 & 18,257.00 & 9376.75 & 9707.50 \\
+			5 & 19,541.25 & 9323.50 & 9742.75 & 14,476.67 & 12,599.83 & 11,411.17 \\
+			6 & 12,780.50 & 11,767.00 & 10,670.50 & 16,992.00 & 15,236.88 & 13,304.75 \\
+			7 & 21,370.47 & 18,891.65 & 16,208.94 & 18,829.53 & 16,928.47 & 14,654.00 \\
+			8 & 23,122.89 & 20,069.28 & 16,927.33 & 31,113.00 & 26,355.00 & 21,077.00 \\
+			9 & 18,240.88 & 16,536.62 & 14,205.25 & 27,920.00 & 23,667.00 & 19,115.00 \\
+			10 & 17,269.14 & 15,186.43 & 13,284.43 & 22,736.25 & 19,858.25 & 16,938.06 \\	
+			\bottomrule
+		\end{tabularx}
+	\end{adjustwidth}
+	\noindent{\footnotesize{\textsuperscript{1} Clusters are computed for each band in the composite triplet: Band 5 (NIR), Band 4 (Red), and Band 3 (Green).}}
+\end{table}
+
+\vspace{-14pt}
+\begin{table}[H]
+\small
+\caption{\hl{Pairwise} comparison of the k-means classification for Bands 5-4-3 of the Landsat-8 OLI/TIRS images for 2022 and 2023 in Qena Bend region \textsuperscript{1}.\label{tab5}}
+	\begin{adjustwidth}{-\extralength}{0cm}
+		\begin{tabularx}{\fulllength}{CCCCCCC}
+			\toprule
+			\multirow{2}{*}{\textbf{\emph{Class ID}}} & \multicolumn{3}{c}{\textbf{2022}} & \multicolumn{3}{c}{\textbf{2023}} \\ 
+			\textbf{} & \textbf{\emph{Band 5}} & \textbf{\emph{Band 4}} & \textbf{\emph{Band 3}} & \textbf{\emph{Band 5}} & \textbf{\emph{Band 4}} & \textbf{\emph{Band 3}} \\
+			\midrule
+			
+			1 & 24,428.50 & 21,422.20 & 18,051.50 & 21,513.50 & 10,245.750 & 10,483.000 \\
+			2 & 19,238.75 & 17,313.00 & 14,911.25 & 25,528.40 & 22,234.800 & 18,665.200 \\
+			3 & 27,402.67 & 23,631.83 & 19,472.50 & 17,918.11 & 9096.444 & 9575.333 \\
+			4 & 22,303.50 & 19,676.83 & 16,793.33 & 24,549.75 & 21,362.375 & 17,997.875 \\
+			5 & 17,517.33 & 11,594.67 & 10,989.33 & 15,965.40 & 14,835.200 & 13,574.400 \\
+			6 & 12,943.67 & 11,050.00 & 10,303.00 & 22,865.67 & 19,456.933 & 16,537.733 \\
+			7 & 17,225.22 & 15,122.22 & 13,253.00 & 23,488.23 & 20,695.000 & 17,726.000 \\
+			8 & 25,640.82 & 22,323.82 & 18,730.73 & 18,460.75 & 16,531.833 & 14,379.417 \\
+			9 & 20,699.44 & 18,365.81 & 15,840.12 & 20,155.57 & 18,063.786 & 15,478.143 \\
+			10 & 23,487.22 & 20,428.72 & 17,181.22 & 27,425.50 & 23,626.900 & 19,359.200 \\	
+			\bottomrule
+		\end{tabularx}
+	\end{adjustwidth}
+	\noindent{\footnotesize{\textsuperscript{1} Clusters are computed for each band in the composite triplet: Band 5 (NIR), Band 4 (Red), and Band 3 (Green).}}
+\end{table}
+
+\vspace{-4pt}
+{The land cover class `floodplain' decreased by 5.5\% from 2013 (ID class 2 with 26,530,972.6 pixels) to 2015 (ID class 1 with value 25,058,427), and then slightly increased at the end of the study period from 21,467,288.5 to 22,414,794 of the assigned pixels, i.e., by 4.22\%; see Table} \ref{tab2}. {Land class 2 `silt sediments'  showed a change from 2016 with 10,144,633~assigned pixels against 10,594,134 pixels in 2019, which demonstrates an increase of 4.24\%. Land class 3 `wadi deposits' demonstrated the following changes in the distribution of pixels, from 6,237,758.6 in 2013 to 6,847,520 in 2015, i.e., an increase of 8.9\%. From 2022 to 2023, the values changed from 6,978,872.8 to 6,053,497, i.e., 13.2\%. A slight increase in the same land cover class was further noted in 2022 with 11,161,798.4 assigned pixels, followed by a slight decrease to 10,517,903 in 2023, which resulted in a decline of 5.77\%.}
+
+{A slight increase of 8.73\% in land cover class 8 `terrace soils and stony debris' was noted, from 2015 with 3,829,403 pixels to 4,195,904 pixels in 2016. The land cover class `limestone foothills' remained with comparable values in 2015 with 13,450,745~pixels against 12,277,811 in 2016, which is a decrease of 8.72 \%, and 11,101,016 in 2019, i.e., 9.58\%. Finally, land cover class 10 `limestone rock land' experienced recent changes from 2022 with 8,429,786.2 values to 6,083,803 in 2023, which might be caused by the soil erosion processes.} To compare the land cover types over Qena, we can start with \mbox{Figure {\ref{fig07}}} {and analyze changes in land cover classes and how the pixel classes are assigned, as summarized in Table} \ref{tab3}. 
+
+Figure \ref{fig07} shows several band combinations for color composites. {Notably}, Band 4-3-2 represents a natural color composite; Band 5-4-3 is a composition that includes an infrared (Band 5) and is therefore adjusted for the identification of vegetation in the river floodplain. Band 5-7-1 contains NIR (Band 5), SWIR2 (Band 7), sensitive to radiation emission, and coastal aerosol (Band 1), sensitive to small particles, haze, and also burnt areas \cite{8611806}. The area of the Nile floodplain with riparian vegetation has strong absorption both in the visible and NIR bands, due to the pigmentation of chlorophyll, which absorbs highly at wavelengths in visible bands. Other factors are the physiological structure of the plant canopy and the moisture of leaves. Therefore, the floodplain area has strong reflectance in all bands due to the presence of vegetation with high water content, as can be seen in Figures \ref{fig07}--\ref{fig09}.
+
+\begin{figure}[H]
+\makebox[1.00\linewidth][r]{%
+	\begin{subfigure}[b]{.40\textwidth}
+		\centering
+			\includegraphics[width=0.86\textwidth]{Fig_07a}
+		\caption{2013: Bands {4-3-2}}
+	\end{subfigure}%
+	\begin{subfigure}[b]{.40\textwidth}
+		\centering
+		\includegraphics[width=0.86\textwidth]{Fig_07b}
+		\caption{2013: Bands {5-4-3}}
+	\end{subfigure}%
+	\begin{subfigure}[b]{.40\textwidth}
+		\centering
+		\includegraphics[width=0.99\textwidth]{Fig_07c}
+		\caption{2013: Clustering}
+	\end{subfigure}%
+}\\
+\vfill \vspace{1mm}
+\makebox[1.00\linewidth][r]{%
+	\begin{subfigure}[b]{.40\textwidth}
+		\centering
+			\includegraphics[width=0.87\textwidth]{Fig_07d}
+		\caption{2015: Bands {5-7-1}}
+	\end{subfigure}%
+	\begin{subfigure}[b]{.40\textwidth}
+		\centering
+		\includegraphics[width=0.87\textwidth]{Fig_07e}
+		\caption{2015: Bands {6-3-2}}
+	\end{subfigure}%
+	\begin{subfigure}[b]{.40\textwidth}
+		\centering
+		\includegraphics[width=0.92\textwidth]{Fig_07f}
+		\caption{2015: Clustering}
+	\end{subfigure}%
+}\caption{Qena Bend of the Nile River: false color composites and clustering of the Landsat 8-9 OLI/TIRS images: (\textbf{a}) 2013 RGB in {4-3-2} Bands, (\textbf{b}) 2013 RGB in {5-4-3} Bands, (\textbf{c}) 2013 unsupervised classification, (\textbf{d}) 2015 RGB in {5-7-1} Bands, (\textbf{e}) 2015 RGB in {6-3-2} Bands, (\textbf{f}) 2015 RGB: Clustering.}\label{fig07}
+\end{figure}
+
+
+
+\vspace{-4pt}
+Figure \ref{fig08} demonstrates the results of the clustering for the pairwise comparison of years 2016 and 2019 and the color composites {using the } following band combinations: \mbox{5-6-4}; \mbox{7-5-4}, 7-6-4 and 7-5-3. False color composites 7-5-4 and 7-6-4 (urban) include the Shortwave Infrared {band } (SWIR-2), which is optimal for {the } visualization of urban areas due to better contrast between the built-up areas, water areas, and vegetation areas. {Moreover, while composites 7-5-4 and 7-5-3 } resemble each other due to the presence of the SWIR1 and Red bands, the Green band (Band 3) in the {second composite enables the better discrimination of } the limestone rock land {using a bright blue color, whereas, in composite 7-5-4, the color used for representing limestone rock land is very similar to that used for } the gravel and stony soil{, namely} orchid and magenta, respectively.
+
+{Furthermore, the area covered by land cover class 4 `gritty and gravel soil' remained stable, with only a very slight decrease in the area from 2015 with 3,019,950 assigned pixels to 2016 with 3,012,708 pixels, which is below 1\%. Moreover, land cover class 5 `sandy soils' demonstrated an increase in recent years from 11,161,798.4 to 11,952,344, i.e., an increase of 6.6 \%. Land cover class 6 `fine sand, silty and clay soil' has changes, with a slight increase from 3,220,846 in 2016 to 3,359,878 in 2019, which is a gain of 4.14\%, which could be caused by the environmental effects related to the hydrology of the Nile. Land cover class 7 `gravel and stony soil' showed a slight decrease from 7,687,698 in 2019 to 7,714,730.1 in 2022, which is below 1\%. }
+
+\begin{figure}[H]
+\makebox[1.00\linewidth][r]{%
+	\begin{subfigure}[b]{.40\textwidth}
+		\centering
+			\includegraphics[width=0.87\textwidth]{Fig_08a}
+		\caption{2016: Bands {5-6-4}}
+	\end{subfigure}%
+	\begin{subfigure}[b]{.40\textwidth}
+		\centering
+		\includegraphics[width=0.87\textwidth]{Fig_08b}
+		\caption{2016: Bands {7-5-4}}
+	\end{subfigure}%
+	\begin{subfigure}[b]{.40\textwidth}
+		\centering
+		\includegraphics[width=0.90\textwidth]{Fig_08c}
+		\caption{2016: Clustering}
+	\end{subfigure}%
+}\\
+\vfill \vspace{1mm}
+\makebox[1.00\linewidth][r]{%
+	\begin{subfigure}[b]{.40\textwidth}
+		\centering
+			\includegraphics[width=0.87\textwidth]{Fig_08d}
+		\caption{2019: Bands {7-6-4}}
+	\end{subfigure}%
+	\begin{subfigure}[b]{.40\textwidth}
+		\centering
+		\includegraphics[width=0.87\textwidth]{Fig_08e}
+		\caption{2019: Bands {7-5-3}}
+	\end{subfigure}%
+	\begin{subfigure}[b]{.40\textwidth}
+		\centering
+		\includegraphics[width=0.92\textwidth]{Fig_08f}
+		\caption{2019: Clustering}
+	\end{subfigure}%
+}\caption{Qena Bend of the Nile River: false color composites and clustering of the Landsat 8-9 OLI/TIRS images: (\textbf{a}) 2016 RGB in \mbox{{5-6-4}} Bands, (\textbf{b}) 2016 RGB in {7-5-4} Bands, (\textbf{c}) 2016 unsupervised classification, (\textbf{d}) 2019 RGB in {7-6-4} Bands, (\textbf{e}) 2019 RGB in {7-5-3} Bands, (\textbf{f}) 2019 RGB: Clustering.}\label{fig08}
+\end{figure}
+
+Figures \ref{fig07}--\ref{fig09} show the wadi streams with their typical dendrite structure, with a comparison of images for {the years }2013, 2015, 2016, 2019, 2022, and 2023. The fluvial network structure is oriented towards the Qena Bend segment of the Nile. The system of the wadi fluvial structure and drainage stream network in the surroundings of the Qena Bend of the Nile River was identified in the images due to {its }characteristic morphological structure {with a }typical dendritic pattern that represents the flow direction of the dry wadi streams. These are largely controlled by the underlying geological structure and regional lithology. The origin of these basins lies in {the }mountainous highland of the basement and is oriented west--east, either to the Nile or to the Red Sea, according to the catchment, {which means that }their direction follows these orientations. In both cases, the potential damage from  disastrous events may affect urban areas such as the small cities and {the infrastructure of industrial locations}. 
+
+
+Figure \ref{fig09} visualizes the band combinations {6-3-1, 5-4-3, 5-6-2, and 7-5-3} for the images covering the Qena region in 2022 and 2023. 
+
+\begin{figure}[H]
+\makebox[1.00\linewidth][r]{%
+	\begin{subfigure}[b]{.40\textwidth}
+		\centering
+			\includegraphics[width=0.87\textwidth]{Fig_09a}
+		\caption{2022: Bands {6-3-1}}
+	\end{subfigure}%
+	\begin{subfigure}[b]{.40\textwidth}
+		\centering
+		\includegraphics[width=0.87\textwidth]{Fig_09b}
+		\caption{2022: Bands {5-4-3}}
+	\end{subfigure}%
+	\begin{subfigure}[b]{.40\textwidth}
+		\centering
+		\includegraphics[width=0.90\textwidth]{Fig_09c}
+		\caption{2022: Clustering}
+	\end{subfigure}%
+}\\
+\vfill \vspace{1mm}
+\makebox[1.00\linewidth][r]{%
+	\begin{subfigure}[b]{.40\textwidth}
+		\centering
+			\includegraphics[width=0.87\textwidth]{Fig_09d}
+		\caption{2023: Bands {5-6-2}}
+	\end{subfigure}%
+	\begin{subfigure}[b]{.40\textwidth}
+		\centering
+		\includegraphics[width=0.87\textwidth]{Fig_09e}
+		\caption{2023: Bands {7-5-3}}
+	\end{subfigure}%
+	\begin{subfigure}[b]{.40\textwidth}
+		\centering
+		\includegraphics[width=0.92\textwidth]{Fig_09f}
+		\caption{2023: Clustering}
+	\end{subfigure}%
+}\caption{Qena Bend of the Nile River: false color composites and clustering of the Landsat 8-9 OLI/TIRS images: (\textbf{a}) 2022 RGB in {6-3-1} Bands, (\textbf{b}) 2022 RGB in {5-4-3} Bands, (\textbf{c}) 2022 unsupervised classification, (\textbf{d}) 2023 RGB in {5-6-2} Bands, (\textbf{e}) 2023 RGB in {7-5-3} Bands, (\textbf{f}) 2023 RGB: Clustering.}\label{fig09}
+\end{figure}
+
+The composite of {5-4-3 }includes the NIR, Red, and Green bands that best represent the vegetation coverage in the Nile River floodplain, which is identified as dark crimson, well {contrasted }against the other land cover types. 
+
+
+
+The composite 5-6-2 includes the SWIR 1 and Blue bands, which results in the sands of the Western and Eastern Deserts shown in green shadows. This enables us to discriminate them from the wadi channels that are colored in light lilac. The limestone foothills are visualized in light magenta, while gritty and gravel soil appears slate blue. Sandy soils are colored in light chartreuse green, while the terrace soils and stony debris are in lime green.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Discussion}
+
+The Qena Wadi region is affected by annual flash floods and related geomorphological processes such as erosion as a consequence of the soil's mass movement and the deposition of soil particles during the heavy rainfall. In turn, the deterioration of the soil and changes in land cover types {have a negative impact on }agriculture and may damage infrastructure, e.g., {cut off roads. The consequences of such natural hazards emphasize }the dependence of social sustainability and urban infrastructure on the environmental setting of the region. Accurate information regarding the possibility of geomorphic risks or landslide deposition may be derived from {an }evaluation of the landscape's morphology. For instance, the evaluation of the channel incision modeled by geomorphic adjustment scenarios {can demonstrate} the effects of geomorphic processes on infrastructure \cite{Hermas}.
+
+{Our study aimed to visualize gradual land cover changes in Upper Egypt and illustrate the geomorphology and topography of the Wadi Qena region. To achieve this, we employed a combination of methods, including the classification of }time series of {satellite images, extraction of 2D and 3D mapping information from } topographic maps (GEBCO/SRTM grids){, }and {evaluation of changes in land cover types using }statistical data derived from {image analysis. The integration of such data, as well as the analysis of the geological, geomorphological, and climate setting based on prior works, was used to evaluate the variations in land cover types illustrating the risks of hazards in the Qena Bend area. To further support our analysis, we integrated} geological, geomorphological{, and climate data from prior works. By combining and analyzing these data, we were able to evaluate }variations in land cover types {and illustrate the hazard risks }in the Qena Bend area. {Similar examples of data integration for hydrogeological modeling are presented in earlier studies focused on evaluating the aquifer potentiality in the Eastern Desert} \cite{Moneim,ELHAMEED2017218}, 2D and 3D modeling for land surface slope gradient assessment \cite{Othman}, and the recognition of structural lineaments and fluvial channels and catchment analysis \cite{rs12101559}. {These studies all demonstrate approaches to data fusion that benefit from advancements in computer vision algorithms for the extraction of} information from remote sensing data \cite{AZZAZY2022104805}.
+
+Computer vision algorithms {for }image recognition, discrimination{, }and data processing are fundamental {problems }in remote sensing and Earth sciences{, with }a wide range of applications 
+\cite{ABDELKAREEM2015245,Lemenkova202231,ELQADI2020104696,Husseinetal1995,DHANYA2022211}. The use of computer vision algorithms for the visualization, analysis, and classification of satellite images {aims to prevent }the risk of natural hazards {by mapping }potentially endangered areas. {Regions such }as wadi valleys in the desert areas of Southern Egypt are at high {risk }of flash floods. {In this paper, we present }an approach to represent, process, {analyze, }and compare satellite images, both as classified maps and as extracted information on land cover types and their changes as statistical data derived from the images and {summarized}in tables. We {demonstrate }how an R-based approach{, utilizing }k-means clustering and the spectral reflectance characteristics of the remotely sensed data{, }can be used to learn how landscapes in Southern Egypt gradually change over time.
+
+{To recognize changes in the satellite images, }short time series analysis {was performed }using the principles of remote sensing data processing \cite{curran1985principles}. {Similarity }in the texture and structure of the objects represented on the Landsat 8-9 scenes was {analyzed }based on the characteristics of the multispectral channels from the Landsat satellite images using fusion techniques for {diverse }spectral bands \cite{4234117}. {False }color composites (NIR, Red{, }and Green) {were }applied to better {recognize } the attributes of vegetation, water{, }and land as major classes via automatic machine-based algorithms of R. {As a result, } subclasses such as wadi valleys, the Nile floodplain and valley, {and hills }were defined according to the surface structure in the study area. {The } orientation of the patterns of Wadi Qena {on the satellite images is }almost parallel to the axis direction of the Red Sea uplift, which corresponds to the {geological} origin of the wadi network.
+
+A pairwise comparison of the land cover changes enables us to obtain a  general picture of the gradual trends in land cover changes in Qena's surroundings over the past 10 years. \mbox{Figures \ref{fig07}--\ref{fig09}} {present a pairwise comparison of the changes in land cover types in the Qena Bend region up to the relevant two years next to each other. The analysis of these images demonstrates maps of changes in land cover types calculated and visualized between the years 2013 and 2015 (Figure} \ref{fig07}), {the years 2016 and 2019 (Figure} \ref{fig08}), {and the years 2022 and 2023 (Figure} \ref{fig09}). {The computation is summarized in Table} \ref{fig03} {for 2013/2015, Table} \ref{fig04} {for 2016/2019, and Table} \ref{fig05} {for 2022/2023.} 
+
+Flash floods and soil deposition in {the }Wadi Qena region are {natural phenomena related to the climate and occur repeatedly in } Southern Egypt due to its specific geomorphology \cite{ElShamy}. Therefore, predicting such hazards {requires }complex climatic computational modeling. {However, }robust information derived from remote sensing data processed by advanced computer vision and pattern recognition {tools can support risk mitigation measures }and propose planning strategies in regions prone to natural hazards.
+
+{Geomorphic data can also be used to evaluate groundwater supply }\cite{Abdelkhalek2021,Abdelkareem} and its availability for irrigation in agriculture \cite{Kamal2021}.
+
+Therefore, satellite-derived {maps of }land cover types are a useful tool for {both }determining hazard areas and defining zones susceptible to floods{, and we also }applied geomorphic modeling according to the distribution of the fluvial network of the wadi in {the } southern segment of the Eastern Desert. Moreover, data analysis and visualization performed using scripting methods provide a new source of information that can be used to implement mitigation policies and measures of sustainable development in {the }Qena Bend region, as well as for urban planning in hazard-prone areas of \hl{Egypt} %MDPI: %MDPI: Please add the citation of ref.[122,123] in the main text.
+ \cite{ABDELAAL2020103671}. 
+
+{In }future works, {we plan to assess the }geomorphological hazards by {analyzing the }susceptibility of various regions supported by the classified satellite images{. This will enable the evaluation of the risk of flash floods}, soil erosion{, and mass deposition. Since } landscapes are subject to destructive geomorphological hazards such as flash floods, dust storms{, }and heavy showers, {the use of satellite images provides }objective and robust information regarding these hazards and {their }disastrous processes. {Flash floods, in particular, cause sediment deposition }and debris and affect {the }shape of the land surface{. Therefore, the }preventive mapping and evaluation of {geomorphological risks are crucial }for infrastructure and agricultural activities in Upper Egypt.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Conclusions}
+
+{The use of satellite images in the classification of land cover types by clustering is an important approach for applications in Earth sciences. At the same time, identification of the features and properties of the landscapes on the space-borne images is a challenging field of investigation in geoinformation due to the complexity of the interpretation of the land cover classes. A multi-disciplinary approach combining remote sensing data and advanced technical tools for their processing is an effective approach that supports satellite image analysis. In this paper, we demonstrate the application of such an approach by presenting the programming tools used for spatial data analysis. We show that the advanced methods of scripting languages for image processing are effective tools for image analysis and classification.}
+
+{Specifically}, we have demonstrated a method {for extracting }information from the Landsat 8-9 OLI/TIRS {satellite images }to track land cover changes in the wadi drainage surface of {the }Qena Bend district of the Nile River. We have presented an application of the R scripting libraries for the processing of geoinformation to analyze visual objects on the remote sensing data by computer vision and methods of pattern recognition on the images. Local features in the target study area were identified using the k-means clustering method and visualized {in synthesized }maps based on the {six classified }images. This algorithm exploits the values of the pixels' DNs to discriminate the classes on the land surface based on the similarity of pixels' values and assigning them to 10 {separate }classes. 
+
+We have approached the problem of unsupervised classification of the satellite images {through the use of the R language, to extract objects from }information on the land cover types {in the }Qena Bend region {in }Upper Egypt. {The R scripting }libraries `raster', `terra'{, }and `RStoolbox' {were utilized to extract and analyze information from }remote sensing data {in the context of the geomorphological structures over the studied area. Through a machine-based approach enabled by R, spatial features and land cover classes were automatically separated, allowing for the analysis of changes in the ephemeral riverbed complex in the Qena district using }computer vision and applied programming.
+
+In the framework of this study, the {scripted }implementation of the R libraries {was }evaluated under Landsat OLI/TIRS data with auxiliary cartographic data processing by GMT. The comparison of the land cover changes {was then summarized in tabular form, based on }information extracted from the R-processed images. Our analyses show that {the R approach }algorithms of computer vision applied for geographic data processing are effective for multispectral {space-borne data. Using R, we have computed maps for the pairwise comparison of the different target years (2013 and 2015, 2016 and 2019, 2022 and 2023) to obtain a general trend of the transformation in selected land cover types in the Qena region.}
+
+Our study demonstrates the effectiveness of the R-based method {as }an advanced approach to geospatial image processing compared to state-of-the-art GIS methods. {Specifically, our algorithm is }trained to classify pixels and assign them to {different }land cover classes {based on the spectral reflectance values }in various bands of the satellite images{, allowing for automatic interpretation of the images. The use of }computer vision algorithms {and automation allowed for the generation of } a series of {maps depicting }the land cover types in {the Qena area during the years }2013, 2015, 2016, 2019, 2022{, }and 2023. {Comparing the }changes in land cover types {provides a better understanding and interpretation of }the cumulative effects {of } environmental changes and occasional floods in {the }southern segment of the Eastern Desert on the geomorphic patterns {of } land cover types {in the Qena Bend region of Upper Egypt}.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\authorcontributions{Supervision, conceptualization, methodology, software, resources, funding acquisition, and project administration, O.D.; writing---original draft preparation, methodology, software, data curation, visualization, formal analysis, validation, writing---review and editing, and investigation, P.L. All authors have read and agreed to the published version of the manuscript.}
+
+\funding{\textls[-5]{The publication was funded by the Editorial Office of \emph{Information}, MDPI, by providing a 100\% discount for the APC of this manuscript. This project was supported by the Federal Public Planning Service Science Policy or Belgian Federal Science Policy Office---BELSPO (B2/202/P2/SEISMOSTORM).}}
+
+\institutionalreview{Not applicable.}
+
+\informedconsent{Not applicable.}
+
+\dataavailability{Not applicable} 
+
+\acknowledgments{The authors thank the reviewers for their reading and review of this manuscript.}
+
+\conflictsofinterest{The authors declare no conflicts of interest.} 
+
+\abbreviations{Abbreviations}{
+The following abbreviations are used in this manuscript:\\
+
+\noindent 
+\begin{tabular}{@{}ll}
+ASTER & Advanced Spaceborne Thermal Emission and Reflection Radiometer \\ 
+DBSCAN & Density-Based Spatial Clustering of Applications with Noise \\
+GEBCO & General Bathymetric Chart of the Oceans \\
+GMT & Generic Mapping Tools \\
+GIS & Geographic Information System \\
+Landsat OLI/TIRS & Landsat Operational Land Imager Thermal Infrared Sensor \\
+NIR & Near Infrared \\
+RGB & Red Green Blue\\
+SRTM & Shuttle Radar Topography Mission \\
+SWIR & Shortwave Infrared \\
+DEM & Digital Elevation Model\\
+UTM & Universal Transverse Mercator \\
+WGS84 & World Geodetic System 1984 \\
+\end{tabular}
+}
+
+\begin{adjustwidth}{-\extralength}{0cm}
+%\printendnotes[custom] % Un-comment to print a list of endnotes
+
+%\bibliography{Qena.bib}
+\reftitle{References}
+\begin{thebibliography}{999}
+
+\bibitem[Abdelkareem \em{et~al.}(2018)Abdelkareem, {Kamal El-Din}, and
+  Osman]{ABDELKAREEM2018682}
+Abdelkareem, M.; {Kamal El-Din}, G.M.; Osman, I.
+\newblock An integrated approach for mapping mineral resources in the Eastern
+  Desert of Egypt.
+\newblock {\em Int. J. Appl. Earth Obs. Geoinf.} {\bf 2018}, {\em 73},~682--696.
+\newblock {\url{https://doi.org/10.1016/j.jag.2018.07.005}}.
+
+\bibitem[Ramadan and Sultan(2003)]{1294518}
+Ramadan, T.; Sultan, S.
+\newblock Integration of geological, remote sensing and geophysical data for
+  the identification of massive sulphide zones at Wadi Allaqi area, South
+  Eastern Desert, Egypt.
+\newblock In Proceedings of the IGARSS 2003. 2003 IEEE International Geoscience
+  and Remote Sensing Symposium. Proceedings (IEEE Cat. No.03CH37477),  \hl{Toulouse, France, 21--25 July 2003;} %MDPI: We added the location and date of the conference. Please confirm. same as below.
+Volume~4, \mbox{pp. 2589--2592}.
+\newblock {\url{https://doi.org/10.1109/IGARSS.2003.1294518}}.
+
+\bibitem[Zoheir \em{et~al.}(2019)Zoheir, Emam, Abdel-Wahed, and
+  Soliman]{rs11121450}
+Zoheir, B.; Emam, A.; Abdel-Wahed, M.; Soliman, N.
+\newblock Multispectral and Radar Data for the Setting of Gold Mineralization
+  in the South Eastern Desert, Egypt.
+\newblock {\em Remote Sens.} {\bf 2019}, {\em 11}, 1450.
+\newblock {\url{https://doi.org/10.3390/rs11121450}}.
+
+\bibitem[El-Khattib \em{et~al.}(1997)El-Khattib, El-Mowelhi, and
+  El-Salam]{615837}
+El-Khattib, H.; El-Mowelhi, N.; El-Salam, A.
+\newblock Desertification and land degradation using high resolution satellite
+  data in the Nile Delta, Egypt.
+\newblock In Proceedings of the IGARSS'97. 1997 IEEE International Geoscience
+  and Remote Sensing Symposium Proceedings. Remote Sensing---A Scientific
+  Vision for Sustainable Development,  \hl{Singapore, 3--8 August 1997;} Volume~1, \mbox{pp. 197--199}.
+\newblock {\url{https://doi.org/10.1109/IGARSS.1997.615837}}.
+
+\bibitem[Lemenkova and Debeir(2022)]{Lemenkova202227}
+Lemenkova, P.; Debeir, O.
+\newblock {Satellite Image Processing by Python and R Using Landsat 9 OLI/TIRS
+  and SRTM DEM Data on Côte d’Ivoire, West Africa}.
+\newblock {\em J. Imaging} {\bf 2022}, {\em 8},~317.
+\newblock {\url{https://doi.org/10.3390/jimaging8120317}}.
+
+\bibitem[El-Khattib \em{et~al.}(1996)El-Khattib, El-Mowelhi, and
+  Hawela]{516791}
+El-Khattib, H.; El-Mowelhi, N.; Hawela, F.
+\newblock Monitoring land cover of the desert fringes of the eastern Nile
+  Delta, Egypt.
+\newblock In Proceedings of the IGARSS '96. 1996 International Geoscience and
+  Remote Sensing Symposium, \hl{Lincoln, NE, USA, 31 May 1996;} Volume~3, pp. 1756--1758.
+\newblock {\url{https://doi.org/10.1109/IGARSS.1996.516791}}.
+
+\bibitem[Lemenkova and Debeir(2022)]{Lemenkova202229}
+Lemenkova, P.; Debeir, O.
+\newblock {R Libraries for Remote Sensing Data Classification by k-means
+  Clustering and NDVI Computation in Congo River Basin, DRC}.
+\newblock {\em Appl. Sci.} {\bf 2022}, {\em 12},~12554.
+\newblock {\url{https://doi.org/10.3390/app122412554}}.
+
+\bibitem[Kaiser(2013)]{6723607}
+Kaiser, M.F.
+\newblock GIS data integration for SRTM -Landsat ETM+-RADARSAT-1 images to
+  delineat subsurface paleolakes, Wadi Watir area, Egypt.
+\newblock In Proceedings of the 2013 IEEE International Geoscience and Remote
+  Sensing Symposium---IGARSS, \hl{Melbourne, VIC, Australia, 21--26 July 2013;} pp. 3594--3597.
+\newblock {\url{https://doi.org/10.1109/IGARSS.2013.6723607}}.
+
+\bibitem[Kamel \em{et~al.}(2022)Kamel, Tolba, AbuBakr, and
+  Omar]{KAMEL2022104420}
+Kamel, M.; Tolba, A.; AbuBakr, M.M.; Omar, M.M.
+\newblock Utilization of Landsat-8 data for lithological mapping of
+  neoproterozoic basement rocks in north Qena-Safaga road, North Eastern
+  Desert, Egypt.
+\newblock {\em J. Afr. Earth Sci.} {\bf 2022}, {\em
+  186},~104420.
+\newblock {\url{https://doi.org/10.1016/j.jafrearsci.2021.104420}}.
+
+\bibitem[Mohamed(2019)]{MOHAMED2019103507}
+Mohamed, S.A.
+\newblock Application of satellite image processing and GIS-Spatial modeling
+  for mapping urban areas prone to flash floods in Qena governorate, Egypt.
+\newblock {\em J. Afr. Earth Sci.} {\bf 2019}, {\em
+  158},~103507.
+\newblock {\url{https://doi.org/10.1016/j.jafrearsci.2019.05.015}}.
+
+\bibitem[Abdalla(2012)]{ABDALLA20128}
+Abdalla, F.
+\newblock Mapping of groundwater prospective zones using remote sensing and GIS
+  techniques: A case study from the Central Eastern Desert, Egypt.
+\newblock {\em J. Afr. Earth Sci.} {\bf 2012}, {\em 70},~8--17.
+\newblock {\url{https://doi.org/10.1016/j.jafrearsci.2012.05.003}}.
+
+\bibitem[Lemenkova and Debeir(2022)]{Lemenkova202230}
+Lemenkova, P.; Debeir, O.
+\newblock {Satellite Altimetry and Gravimetry Data for Mapping Marine Geodetic
+  and Geophysical Setting of the Seychelles and the Somali Sea, Indian Ocean}.
+\newblock {\em J. Appl. Eng. Sci.} {\bf 2022}, {\em
+  12},~191--202.
+\newblock {\url{https://doi.org/10.2478/jaes-2022-0026}}.
+
+\bibitem[Koch \em{et~al.}(2012)Koch, Burkholder, and Gaber]{6350376}
+Koch, M.; Burkholder, B.; Gaber, A.
+\newblock Identifying suitable areas for agricultural expansion in the Western
+  Desert of Egypt by multisensor data fusion.
+\newblock In Proceedings of the 2012 IEEE International Geoscience and Remote
+  Sensing Symposium, \hl{Munich, Germany, 22--27 July 2012;} \mbox{pp. 2683--2686}.
+\newblock {\url{https://doi.org/10.1109/IGARSS.2012.6350376}}.
+
+\bibitem[Hamza and Gomaa(2020)]{9171725}
+Hamza, E.; Gomaa, M.
+\newblock Optimum Three Bands for Change Detection Using Landsat Images.
+\newblock In Proceedings of the 2020 12th International Conference on
+  Electrical Engineering (ICEENG), \hl{Cairo, Egypt, 7--9 July 2020;} \mbox{pp. 293--297}.
+\newblock {\url{https://doi.org/10.1109/ICEENG45378.2020.9171725}}.
+
+\bibitem[Singh \em{et~al.}(2020)Singh, Tyagi, Singh, and Singh]{SINGH2020423}
+Singh, M.; Tyagi, K.D.; Singh, A.; Singh, K.K.
+\newblock Detection of changes in Landsat Images using Hybrid PSO-FCM.
+\newblock {\em Procedia Comput. Sci.} {\bf 2020}, {\em 167},~423--430.
+\newblock {\url{https://doi.org/10.1016/j.procs.2020.03.251}}.
+
+\bibitem[Hashim \em{et~al.}(2020)Hashim, Elkelish, Alhaithloul, El-hadidy, and
+  Farouk]{Hashim}
+Hashim, A.; Elkelish, A.; Alhaithloul, H.; El-hadidy, S.M.; Farouk, H.
+\newblock {Environmental monitoring and prediction of land use and land cover
+  spatio-temporal changes: A case study from El-Omayed Biosphere Reserve,
+  Egypt}.
+\newblock {\em Environ. Sci. Pollut. Res.} {\bf 2020}, {\em
+  27},~42881--42897.
+\newblock {\url{https://doi.org/10.1007/s11356-020-10208-1}}.
+
+\bibitem[Badreldin \em{et~al.}(2017)Badreldin, Xing, and Goossens]{Badreldin}
+Badreldin, N.; Xing, Z.; Goossens, R.
+\newblock {The application of satellite-based model and bi-stable ecosystem
+  balance concept to monitor desertification in arid lands, a case study of
+  Sinai Peninsula}.
+\newblock {\em Model. Earth Syst. Environ.} {\bf 2017}, {\em 3},~21.
+\newblock {\url{https://doi.org/10.1007/s40808-017-0300-5}}.
+
+\bibitem[Kawy and Darwish(2019)]{Kawy}
+Kawy, W.; Darwish, K.
+\newblock {Assessment of land degradation and implications on agricultural land
+  in Qalyubia Governorate, Egypt}.
+\newblock {\em Bull. Natl. Res. Cent.} {\bf 2019}, {\em
+  43},~70.
+\newblock {\url{https://doi.org/10.1186/s42269-019-0102-1}}.
+
+\bibitem[El-Horiny(2019)]{8949893}
+El-Horiny, M.M.
+\newblock Mapping and monitoring of soil salinization using remote sensing and
+  regression techniques: A case study in the Bahariya depression, Western
+  Desert, Egypt.
+\newblock In Proceedings of the IGARSS 2019---2019 IEEE International
+  Geoscience and Remote Sensing Symposium, \hl{Yokohama, Japan,   28 July--2 August  2019;} \mbox{pp. 1--4}.
+\newblock {\url{https://doi.org/10.1109/IGARSS40859.2019.8949893}}.
+
+\bibitem[Gad(2020)]{Gad2020}
+Gad, A. Qualitative and Quantitative Assessment of Land Degradation and
+  Desertification in Egypt Based on Satellite Remote Sensing: Urbanization,
+  Salinization and Wind Erosion.
+\newblock In {\em Environmental Remote Sensing in Egypt}; Springer
+  International Publishing: Cham, Switzerland,  2020; pp. 443--497.
+\newblock {\url{https://doi.org/10.1007/978-3-030-39593-3_15}}.
+
+\bibitem[Taha \em{et~al.}(2017)Taha, Elbarbary, Naguib, and
+  El-Shamy]{TAHA2017157}
+Taha, M.M.; Elbarbary, S.M.; Naguib, D.M.; El-Shamy, I.
+\newblock Flash flood hazard zonation based on basin morphometry using remote
+  sensing and GIS techniques: A case study of Wadi Qena basin, Eastern Desert,
+  Egypt.
+\newblock {\em Remote Sens. Appl. Soc. Environ.} {\bf
+  2017}, {\em 8},~157--167.
+\newblock {\url{https://doi.org/10.1016/j.rsase.2017.08.007}}.
+
+\bibitem[Elsadek \em{et~al.}(2019)Elsadek, Ibrahim, and Mahmod]{ELSADEK2019377}
+Elsadek, W.M.; Ibrahim, M.G.; Mahmod, W.E.
+\newblock Runoff hazard analysis of Wadi Qena Watershed, Egypt based on GIS and
+  remote sensing approach.
+\newblock {\em Alex. Eng. J.} {\bf 2019}, {\em 58},~377--385.
+\newblock {\url{https://doi.org/10.1016/j.aej.2019.02.001}}.
+
+\bibitem[Dinh~Duong(2018)]{8486245}
+Dinh~Duong, N.
+\newblock Decomposition of Landsat 8 OLI Images by Simplified Spectral Patterns
+  for Land Cover Mapping.
+\newblock In Proceedings of the 2018 10th IAPR Workshop on Pattern Recognition
+  in Remote Sensing (PRRS),  \hl{Beijing, China, 19--20 August 2018;} \mbox{pp. 1--13}.
+\newblock {\url{https://doi.org/10.1109/PRRS.2018.8486245}}.
+
+\bibitem[Wang \em{et~al.}(2007)Wang, Zhang, and Cao]{4420687}
+Wang, M.; Zhang, J.L.; Cao, D.Y.
+\newblock Fusion of multispectral and panchromatic satellite images based on
+  ihs and curvelet transformations.
+\newblock In Proceedings of the 2007 International Conference on Wavelet
+  Analysis and Pattern Recognition, \hl{Beijing, China, 2--4 November  2007;} Volume~1, pp. 321--325.
+\newblock {\url{https://doi.org/10.1109/ICWAPR.2007.4420687}}.
+
+\bibitem[Khafagy \em{et~al.}(2020)Khafagy, El-Sayed, and Darwish]{Khafagy}
+Khafagy, M.; El-Sayed, H.; Darwish, K.
+\newblock {Land cover/use change analysis and mapping of Borg El-Arab City,
+  Egypt}.
+\newblock {\em Arab. J. Geosci.} {\bf 2020}, {\em 13},~1123.
+\newblock {\url{https://doi.org/10.1007/s12517-020-06115-x}}.
+
+\bibitem[Bishta(2013)]{Bishta}
+Bishta, A.
+\newblock {Utilities of Landsat 7 data and selective image processing in
+  characterization of radioactivity zones of Wadi Baba–Wadi Shalal Area,
+  Westcentral Sinai, Egypt}.
+\newblock {\em Arab. J. Geosci.} {\bf 2013}, {\em 6},~3513--3526.
+\newblock {\url{https://doi.org/10.1007/s12517-012-0595-5}}.
+
+\bibitem[Kusky \em{et~al.}(2011)Kusky, Ramadan, Hassaan, and Gabr]{Kusky}
+Kusky, T.; Ramadan, T.; Hassaan, M.; Gabr, S.
+\newblock {Structural and tectonic evolution of El-Faiyum depression, North
+  Western Desert, Egypt based on analysis of Landsat ETM+, and SRTM Data}.
+\newblock {\em J. Earth Sci.} {\bf 2011}, {\em 22}, 75--100.
+\newblock {\url{https://doi.org/10.1007/s12583-011-0159-8}}.
+
+\bibitem[Salman(1983)]{Salman}
+Salman, A.A.B.
+\newblock Using Landsat imagery interpretation for underground water
+  prospection around Qena Province, Egypt.
+\newblock {\em Int. J. Remote Sens.} {\bf 1983}, {\em
+  4},~179--189.
+\newblock {\url{https://doi.org/10.1080/01431168308948539}}.
+
+\bibitem[Shalaby \em{et~al.}(2010)Shalaby, Bishta, Roz, and Zalaky]{Shalaby}
+Shalaby, M.; Bishta, A.; Roz, M.; Zalaky, M.E.
+\newblock {Integration of Geologic and Remote Sensing Studies for the Discovery
+  of Uranium Mineralization in Some Granite Plutons, Eastern Desert, Egypt}.
+\newblock {\em J. King Abdulaziz Univ.} {\bf 2010}, {\em
+  21},~1--25.
+\newblock {\url{https://doi.org/10.4197/Ear.21-1.1}}.
+
+\bibitem[Yang \em{et~al.}(2011)Yang, Meng, and Zhang]{Liping}
+Yang, L.; Meng, X.; Zhang, X.
+\newblock SRTM DEM and its application advances.
+\newblock {\em Int. J. Remote Sens.} {\bf 2011}, {\em
+  32},~3875--3896.
+\newblock {\url{https://doi.org/10.1080/01431161003786016}}.
+
+\bibitem[El~Bastawesy \em{et~al.}(2012)El~Bastawesy, Ali, Deocampo, and
+  Al~Baroudi]{6265340}
+El~Bastawesy, M.; Ali, R.R.; Deocampo, D.M.; Al~Baroudi, M.S.
+\newblock Detection and Assessment of the Waterlogging in the Dryland Drainage
+  Basins Using Remote Sensing and GIS Techniques.
+\newblock {\em IEEE J. Sel. Top. Appl. Earth Obs. Remote Sens.} {\bf 2012}, {\em 5},~1564--1571.
+\newblock {\url{https://doi.org/10.1109/JSTARS.2012.2200456}}.
+
+\bibitem[Hamdan and Khozyem(2018)]{Hamdan}
+Hamdan, A.; Khozyem, H.
+\newblock {Morphometric, statistical, and hazard analyses using ASTER data and
+  GIS technique of WADI El-Mathula watershed, Qena, Egypt}.
+\newblock {\em Arab. J. Geosci.} {\bf 2018}, {\em 11},~722.
+\newblock {\url{https://doi.org/10.1007/s12517-018-4068-3}}.
+
+\bibitem[Issawi and Sallam(2017)]{Issawi}
+Issawi, B.; Sallam, E.
+\newblock {Rejuvenation of dry paleochannels in arid regions in NE Africa: A
+  geological and geomorphological study}.
+\newblock {\em Arab. J. Geosci.} {\bf 2017}, {\em 10},~14.
+\newblock {\url{https://doi.org/10.1007/s12517-016-2793-z}}.
+
+\bibitem[Abdalla \em{et~al.}(2020)Abdalla, Moubark, and
+  Abdelkareem]{Abdalla2020}
+Abdalla, F.; Moubark, K.; Abdelkareem, M.
+\newblock Groundwater potential mapping using GIS, linear weighted combination
+  techniques and geochemical processes identification, west of the Qena area,
+  Upper Egypt.
+\newblock {\em J. Taibah Univ. Sci.} {\bf 2020}, {\em
+  14},~1350--1362.
+\newblock {\url{https://doi.org/10.1080/16583655.2020.1822646}}.
+
+\bibitem[Gaber \em{et~al.}(2017)Gaber, Amarah, Abdelfattah, and Ali]{Gaber}
+Gaber, A.; Amarah, B.A.; Abdelfattah, M.; Ali, S.
+\newblock Investigating the use of the dual-polarized and large incident angle
+  of SAR data for mapping the fluvial and aeolian deposits.
+\newblock {\em Nriag J. Astron. Geophys.} {\bf 2017}, {\em
+  6},~349--360.
+\newblock {\url{https://doi.org/10.1016/j.nrjag.2017.10.005}}.
+
+\bibitem[Lemenkova and Debeir(2023)]{Lemenkova202301}
+Lemenkova, P.; Debeir, O.
+\newblock {Quantitative Morphometric 3D Terrain Analysis of Japan Using Scripts
+  of GMT and R}.
+\newblock {\em Land} {\bf 2023}, {\em 12},~261.
+\newblock {\url{https://doi.org/10.3390/land12010261}}.
+
+\bibitem[Abdel-Fattah \em{et~al.}(2017)Abdel-Fattah, Saber, Kantoush, Khalil,
+  Sumi, and Sefelnasr]{w9070553}
+Abdel-Fattah, M.; Saber, M.; Kantoush, S.A.; Khalil, M.F.; Sumi, T.; Sefelnasr,
+  A.M.
+\newblock A Hydrological and Geomorphometric Approach to Understanding the
+  Generation of Wadi Flash Floods.
+\newblock {\em Water} {\bf 2017}, {\em 9}, 553.
+\newblock {\url{https://doi.org/10.3390/w9070553}}.
+
+\bibitem[Abdelkareem and El-Baz(2013)]{abdelkareem2013integration}
+Abdelkareem, M.; El-Baz, F.
+\newblock Integration of optical images and radar data reveal paleohydrological
+  processes west of the Nile, Egypt.
+\newblock {\em Proc. Geol. Soc. Am. Abstr.} {\bf 2013},
+\emph{45},  161.
+
+\bibitem[Abdelkareem and El-Baz(2017)]{AbdelkareemFarouk}
+Abdelkareem, M.; El-Baz, F.
+\newblock Remote sensing of paleodrainage systems west of the Nile River,
+  Egypt.
+\newblock {\em Geocarto Int.} {\bf 2017}, {\em 32},~541--555.
+\newblock {\url{https://doi.org/10.1080/10106049.2016.1161076}}.
+
+\bibitem[Beshr \em{et~al.}(2021)Beshr, {Kamel Mohamed}, ElGalladi, Gaber, and
+  El-Baz]{BESHR2021999}
+Beshr, A.M.; {Kamel Mohamed}, A.; ElGalladi, A.; Gaber, A.; El-Baz, F.
+\newblock Structural characteristics of the Qena Bend of the Egyptian Nile
+  River, using remote-sensing and geophysics.
+\newblock {\em  Egypt. J. Remote Sens. Space Sci.} {\bf
+  2021}, {\em 24},~999--1011.
+\newblock {\url{https://doi.org/10.1016/j.ejrs.2021.11.005}}.
+
+\bibitem[Kamal El-Din \em{et~al.}(2021)Kamal El-Din, El-Noby, Abdelkareem, and
+  Hamimi]{Kamal}
+Kamal El-Din, G.; El-Noby, E.; Abdelkareem, M.; Hamimi, Z.
+\newblock {Using multispectral and radar remote sensing data for geological
+  investigation, Qena-Safaga Shear Zone, Eastern Desert, Egypt}.
+\newblock {\em Arab. J. Geosci.} {\bf 2021}, {\em 14},~997.
+\newblock {\url{https://doi.org/10.1007/s12517-021-07130-2}}.
+
+\bibitem[Moubark and Abdelkareem(2018)]{Moubark}
+Moubark, K.; Abdelkareem, M.
+\newblock {Characterization and assessment of groundwater resources using
+  hydrogeochemical analysis, GIS, and field data in southern Wadi Qena, Egypt}.
+\newblock {\em Arab. J. Geosci.} {\bf 2018}, {\em 11},~598.
+\newblock {\url{https://doi.org/10.1007/s12517-018-3931-6}}.
+
+\bibitem[{Abd el-sadek} \em{et~al.}(2022){Abd el-sadek}, Elbeih, and
+  Negm]{ABDELSADEK2022815}
+{Abd el-sadek}, E.; Elbeih, S.; Negm, A.
+\newblock Coastal and landuse changes of Burullus Lake, Egypt: A comparison
+  using Landsat and Sentinel-2 satellite images.
+\newblock {\em  Egypt. J. Remote Sens. Space Sci.} {\bf
+  2022}, {\em 25},~815--829.
+\newblock {\url{https://doi.org/10.1016/j.ejrs.2022.07.006}}.
+
+\bibitem[Ghebrezgabher \em{et~al.}(2016)Ghebrezgabher, Yang, Yang, Wang, and
+  Khan]{GHEBREZGABHER201637}
+Ghebrezgabher, M.G.; Yang, T.; Yang, X.; Wang, X.; Khan, M.
+\newblock Extracting and analyzing forest and woodland cover change in Eritrea
+  based on landsat data using supervised classification.
+\newblock {\em  Egypt. J. Remote Sens. Space Sci.} {\bf
+  2016}, {\em 19},~37--47.
+\newblock {\url{https://doi.org/10.1016/j.ejrs.2015.09.002}}.
+
+\bibitem[Abdelmalik(2020)]{ABDELMALIK2020263}
+Abdelmalik, K.W.
+\newblock Landsat 8: Utilizing sensitive response bands concept for image
+  processing and mapping of basalts.
+\newblock {\em  Egypt. J. Remote Sens. Space Sci.} {\bf
+  2020}, {\em 23},~263--274.
+\newblock {\url{https://doi.org/10.1016/j.ejrs.2019.04.004}}.
+
+\bibitem[Kamel \em{et~al.}(2016)Kamel, Youssef, Hassan, and
+  Bagash]{KAMEL2016343}
+Kamel, M.; Youssef, M.; Hassan, M.; Bagash, F.
+\newblock Utilization of ETM+ Landsat data in geologic mapping of wadi
+  Ghadir-Gabal Zabara area, Central Eastern Desert, Egypt.
+\newblock {\em  Egypt. J. Remote Sens. Space Sci.} {\bf
+  2016}, {\em 19},~343--360.
+\newblock {\url{https://doi.org/10.1016/j.ejrs.2016.06.003}}.
+
+\bibitem[Eldosouky \em{et~al.}(2020)Eldosouky, Sehsah, Elkhateeb, and
+  Pour]{ELDOSOUKY20201008}
+Eldosouky, A.M.; Sehsah, H.; Elkhateeb, S.O.; Pour, A.B.
+\newblock Integrating aeromagnetic data and Landsat-8 imagery for detection of
+  post-accretionary shear zones controlling hydrothermal alterations: The
+  Allaqi-Heiani Suture zone, South Eastern Desert, Egypt.
+\newblock {\em Adv. Space Res.} {\bf 2020}, {\em 65},~1008--1024.
+\newblock {\url{https://doi.org/10.1016/j.asr.2019.10.030}}.
+
+\bibitem[Gabr \em{et~al.}(2022)Gabr, Diab, {Abdel Fattah}, Sadek, Khalil, and
+  Youssef]{GABR202211}
+Gabr, S.S.; Diab, H.; {Abdel Fattah}, T.A.; Sadek, M.F.; Khalil, K.I.; Youssef,
+  M.A.
+\newblock Aeromagnetic and Landsat-8 data interpretation for structural and
+  hydrothermal alteration mapping along the Central and Southern Eastern Desert
+  boundary, Egypt.
+\newblock {\em  Egypt. J. Remote Sens. Space Sci.} {\bf
+  2022}, {\em 25},~11--20.
+\newblock {\url{https://doi.org/10.1016/j.ejrs.2021.12.002}}.
+
+\bibitem[Bakr \em{et~al.}(2010)Bakr, Weindorf, Bahnassy, Marei, and
+  El-Badawi]{BAKR2010592}
+Bakr, N.; Weindorf, D.; Bahnassy, M.; Marei, S.; El-Badawi, M.
+\newblock Monitoring land cover changes in a newly reclaimed area of Egypt
+  using multi-temporal Landsat data.
+\newblock {\em Appl. Geogr.} {\bf 2010}, {\em 30},~592--605.
+\newblock  {\url{https://doi.org/10.1016/j.apgeog.2009.10.008}}.
+
+\bibitem[{Nasser Mohamed Eid} \em{et~al.}(2020){Nasser Mohamed Eid}, Olatubara,
+  Ewemoje, Farouk, and El-Hennawy]{NASSERMOHAMEDEID202066}
+{Nasser Mohamed Eid}, A.; Olatubara, C.; Ewemoje, T.; Farouk, H.; El-Hennawy,
+  M.T.
+\newblock Coastal wetland vegetation features and digital Change Detection
+  Mapping based on remotely sensed imagery: El-Burullus Lake, Egypt.
+\newblock {\em Int. Soil Water Conserv. Res.} {\bf 2020},
+  {\em 8},~66--79.
+\newblock {\url{https://doi.org/10.1016/j.iswcr.2020.01.004}}.
+
+\bibitem[Ali-Bik \em{et~al.}(2022)Ali-Bik, Sadek, and Hassan]{ALIBIK2022113}
+Ali-Bik, M.W.; Sadek, M.F.; Hassan, S.M.
+\newblock Basement rocks around the eastern sector of Baranis-Aswan Road,
+  Egypt: Remote sensing data analysis and petrology.
+\newblock {\em  Egypt. J. Remote Sens. Space Sci.} {\bf
+  2022}, {\em 25},~113--124.
+\newblock {\url{https://doi.org/10.1016/j.ejrs.2021.12.006}}.
+
+\bibitem[Ali-Bik and Hassan(2022)]{ALIBIK2022593}
+Ali-Bik, M.W.; Hassan, S.M.
+\newblock Remote sensing-based mapping of the Wadi Sa’al-Wadi Zaghara
+  basement rocks, southern Sinai, Egypt.
+\newblock {\em  Egypt. J. Remote Sens. Space Sci.} {\bf
+  2022}, {\em 25},~593--607.
+\newblock {\url{https://doi.org/10.1016/j.ejrs.2022.03.015}}.
+
+\bibitem[Hossen and Negm(2016)]{HOSSEN2016951}
+Hossen, H.; Negm, A.
+\newblock Change Detection in the Water Bodies of Burullus Lake, Northern Nile
+  Delta, Egypt, Using RS/GIS.
+\newblock {\em Procedia Eng.} {\bf 2016}, {\em 154},~951--958.
+\newblock {\url{https://doi.org/10.1016/j.proeng.2016.07.529}}.
+
+\bibitem[Said(1981)]{Said1981}
+Said, R.
+\newblock {\em The Geological Evolution of the River Nile}, 1 ed.; Springer:
+  New York, NY, USA,  1981;
+\newblock 159p. {\url{https://doi.org/10.1007/978-1-4612-5841-4}}.
+
+\bibitem[Said(2017)]{said2017geology}
+Said, R.
+\newblock {\em The geology of Egypt}; Routledge: \hl{New York, NY, USA,} %MDPI: We added the location of the publisher. Please confirm.
+  2017.
+
+\bibitem[Paulissen and Vermeersch(1987)]{paulissen1987egyptian}
+Paulissen, E.; Vermeersch, P.M., {Earth, Man and Climate in the Egyptian Nile
+  Valley During the Pleistocene}.
+\newblock In {\em {Prehistory of Arid North Africa}};  Southern Methodist
+  University Press: Dallas,TX, USA,  1987; pp. 1--29.
+
+\bibitem[Abdelhamid(2014)]{ABDELHAMID2014138}
+Abdelhamid, M.A.M.
+\newblock Middle--upper Cenomanian echinoids from north Wadi Qena, North
+  Eastern Desert, Egypt.
+\newblock {\em Cretac. Res.} {\bf 2014}, {\em 50},~138--170.
+\newblock {\url{https://doi.org/10.1016/j.cretres.2014.04.010}}.
+
+\bibitem[Soliman \em{et~al.}(1986)Soliman, Habib, and Ahmed]{SOLIMAN1986111}
+Soliman, M.A.; Habib, M.E.; Ahmed, E.A.
+\newblock Sedimentologic and tectonic evolution of the Upper Cretaceous-Lower
+  Tertiary succession at Wadi Qena, Egypt.
+\newblock {\em Sediment. Geol.} {\bf 1986}, {\em 46},~111--133.
+\newblock {\url{https://doi.org/10.1016/0037-0738(86)90009-6}}.
+
+\bibitem[Mandur \em{et~al.}(2022)Mandur, Hewaidy, Farouk, and {El
+  Agroudy}]{MANDUR2022104594}
+Mandur, M.M.; Hewaidy, A.G.A.; Farouk, S.; {El Agroudy}, I.S.
+\newblock Implications of calcareous nannofossil biostratigraphy,
+  biochronology, paleoecology, and sequence stratigraphy of the
+  Paleocene-Eocene of the Wadi Qena, Egypt.
+\newblock {\em J. Afr. Earth Sci.} {\bf 2022}, {\em
+  193},~104594.
+\newblock {\url{https://doi.org/10.1016/j.jafrearsci.2022.104594}}.
+
+\bibitem[Sehim(1993)]{sehim1993cretaceous}
+Sehim, A.
+\newblock Cretaceous tectonics in Egypt.
+\newblock {\em Egypt. J. Geol.} {\bf 1993}, {\em 37},~335--372.
+
+\bibitem[Moawad \em{et~al.}(2016)Moawad, Aziz, and Mamtimin]{Moawad}
+Moawad, M.B.; Aziz, A.O.A.; Mamtimin, B.
+\newblock Flash floods in the Sahara: A case study for the 28 January 2013
+  flood in Qena, Egypt.
+\newblock {\em Geomat. Nat. Hazards Risk} {\bf 2016}, {\em
+  7},~215--236.
+\newblock {\url{https://doi.org/10.1080/19475705.2014.885467}}.
+
+\bibitem[El-Fakharany(1998)]{ElFakharany}
+El-Fakharany, M.
+\newblock {Drainage Basins And Flash Floods Management In The Area Southeast
+  Qena, Eastern Desert, Egypt}.
+\newblock {\em Egypt. J. Geol.} {\bf 1998}, {\em 42},~737--750.
+
+\bibitem[El-Haddad \em{et~al.}(2021)El-Haddad, Youssef, Pourghasemi, Pradhan,
+  El-Shater, and El-Khashab]{ElHaddad}
+El-Haddad, B.; Youssef, A.; Pourghasemi, H.; Pradhan, B.; El-Shater, A.H.;
+  El-Khashab, M.H.
+\newblock {Flood susceptibility prediction using four machine learning
+  techniques and comparison of their performance at Wadi Qena Basin, Egypt}.
+\newblock {\em Nat. Hazards} {\bf 2021}, {\em 105},~83--114.
+\newblock {\url{https://doi.org/10.1007/s11069-020-04296-y}}.
+
+\bibitem[Elsadek \em{et~al.}(2019)Elsadek, Ibrahim, Mahmod, and Kanae]{Elsadek}
+Elsadek, W.; Ibrahim, M.; Mahmod, W.; Kanae, S.
+\newblock {Developing an overall assessment map for flood hazard on large area
+  watershed using multi-method approach: Case study of Wadi Qena watershed,
+  Egypt}.
+\newblock {\em Nat. Hazards} {\bf 2019}, {\em 95},~739--767.
+\newblock {\url{https://doi.org/10.1007/s11069-018-3517-3}}.
+
+\bibitem[Abdalla \em{et~al.}(2014)Abdalla, Shamy, Bamousa, Mansour, Mohamed,
+  and Tahoon]{Abdalla2014}
+Abdalla, F.; Shamy, I.; Bamousa, A.; Mansour, A.; Mohamed, A.; Tahoon, M.
+\newblock {Flash Floods and Groundwater Recharge Potentials in Arid Land
+  Alluvial Basins, Southern Red Sea Coast, Egypt}.
+\newblock {\em Int. J. Geosci.} {\bf 2014}, {\em
+  5},~971--982.
+\newblock {\url{https://doi.org/10.4236/ijg.2014.59083}}.
+
+\bibitem[{El Osta} \em{et~al.}(2021){El Osta}, {El Sabri}, and
+  Masoud]{ELOSTA2021101522}
+{El Osta}, M.; {El Sabri}, M.; Masoud, M.
+\newblock Environmental sensitivity of flash flood hazard based on surface
+  water model and GIS techniques in Wadi El Azariq, Sinai, Egypt.
+\newblock {\em Environ. Technol. Innov.} {\bf 2021}, {\em
+  22},~101522.
+\newblock {\url{https://doi.org/10.1016/j.eti.2021.101522}}.
+
+\bibitem[Abdel-Lattif and Sherief(2012)]{AbdelLattif}
+Abdel-Lattif, A.; Sherief, Y.
+\newblock {Morphometric analysis and flash floods of Wadi Sudr and Wadi Wardan,
+  Gulf of Suez, Egypt: Using digital elevation model}.
+\newblock {\em Arab. J. Geosci.} {\bf 2012}, {\em 5},~181--195.
+\newblock {\url{https://doi.org/10.1007/s12517-010-0156-8}}.
+
+\bibitem[El-Magd \em{et~al.}(2021)El-Magd, Pradhan, and Alamri]{ElMagd}
+El-Magd, S.; Pradhan, B.; Alamri, A.
+\newblock {Machine learning algorithm for flash flood prediction mapping in
+  Wadi El-Laqeita and surroundings, Central Eastern Desert, Egypt}.
+\newblock {\em Arab. J. Geosci.} {\bf 2021}, {\em 14},~323.
+\newblock {\url{https://doi.org/10.1007/s12517-021-06466-z}}.
+
+\bibitem[Bandel \em{et~al.}(1987)Bandel, Kuss, and Malchus]{BANDEL1987427}
+Bandel, K.; Kuss, J.; Malchus, N.
+\newblock The sediments of Wadi Qena (Eastern Desert, Egypt).
+\newblock {\em J. Afr. Earth Sci. (1983)} {\bf 1987}, {\em
+  6},~427--455.
+\newblock {\url{https://doi.org/10.1016/0899-5362(87)90086-8}}.
+
+\bibitem[Alkholy \em{et~al.}(2023)Alkholy, Saleh, Ghazala, Deep, and
+  Mekkawi]{Alkholy}
+Alkholy, A.; Saleh, A.; Ghazala, H.; Deep, M.A.; Mekkawi, M.
+\newblock {Groundwater exploration using drainage pattern and geophysical data:
+  a case study from Wadi Qena, Egypt}.
+\newblock {\em Arab. J. Geosci.} {\bf 2023}, {\em 16},~92.
+\newblock {\url{https://doi.org/10.1007/s12517-022-11145-8}}.
+
+\bibitem[Abdel~Moneim \em{et~al.}(2015)Abdel~Moneim, Seleem, and
+  Zeid]{AbdelMoneim}
+Abdel~Moneim, A.; Seleem, E.; Zeid, S.a.
+\newblock {Hydrogeochemical characteristics and age dating of groundwater in
+  the Quaternary and Nubian aquifer systems in Wadi Qena, Eastern Desert,
+  Egypt}.
+\newblock {\em Sustain. Water Resour. Manag.} {\bf 2015}, {\em
+  1},~213--232.
+\newblock {\url{https://doi.org/10.1007/s40899-015-0018-3}}.
+
+\bibitem[Hussien \em{et~al.}(2017)Hussien, Kehew, Aggour, Korany, Abotalib,
+  Hassanein, and Morsy]{HUSSIEN201773}
+Hussien, H.M.; Kehew, A.E.; Aggour, T.; Korany, E.; Abotalib, A.Z.; Hassanein,
+  A.; Morsy, S.
+\newblock An integrated approach for identification of potential aquifer zones
+  in structurally controlled terrain: Wadi Qena basin, Egypt.
+\newblock {\em CATENA} {\bf 2017}, {\em 149},~73--85.
+\newblock {\url{https://doi.org/10.1016/j.catena.2016.08.032}}.
+
+\bibitem[Abdel~Moneim(2005)]{Abdel}
+Abdel~Moneim, A.
+\newblock {Overview of the geomorphological and hydrogeological characteristics
+  of the Eastern Desert of Egypt}.
+\newblock {\em Hydrogeol. J.} {\bf 2005}, {\em 13},~416--425.
+\newblock {\url{https://doi.org/10.1007/s10040-004-0364-y}}.
+
+\bibitem[Ali \em{et~al.}(2022)Ali, Ali, Abdelhady, and Fairhead]{Ali2022}
+Ali, M.; Ali, M.Y.; Abdelhady, A.; Fairhead, J.D.
+\newblock Tectonic evolution and subsidence history of the Cretaceous basins in
+  southern Egypt: The Komombo Basin.
+\newblock {\em Basin Res.} {\bf 2022}, {\em 34},~1731--1762.
+\newblock {\url{https://doi.org/10.1111/bre.12683}}.
+
+\bibitem[Youssef(2003)]{Youssef2003StructuralSO}
+Youssef, M.M.
+\newblock Structural setting of central and south Egypt: An overview.
+\newblock {\em Micropaleontology} {\bf 2003}, {\em 49},~1--13.
+
+\bibitem[Said(1981)]{Said1981a}
+Said, R. The Nile in Egypt.
+\newblock In {\em The Geological Evolution of the River Nile}; Springer: New York, NY, USA, 1981; pp. 12--92.
+\newblock {\url{https://doi.org/10.1007/978-1-4612-5841-4_2}}.
+
+\bibitem[Abdelkareem \em{et~al.}(2012)Abdelkareem, Ghoneim, El-Baz, and
+  Askalany]{ABDELKAREEM201235}
+Abdelkareem, M.; Ghoneim, E.; El-Baz, F.; Askalany, M.
+\newblock New insight on paleoriver development in the Nile basin of the
+  eastern Sahara.
+\newblock {\em J. Afr. Earth Sci.} {\bf 2012}, {\em 62},~35--40.
+\newblock {\url{https://doi.org/10.1016/j.jafrearsci.2011.09.001}}.
+
+\bibitem[Philobbos \em{et~al.}(2015)Philobbos, Essa, and
+  Ismail]{PHILOBBOS2015194}
+Philobbos, E.R.; Essa, M.A.; Ismail, M.M.
+\newblock Geologic history of the Neogene “Qena Lake” developed during the
+  evolution of the Nile Valley: A sedimentological, mineralogical and
+  geochemical approach.
+\newblock {\em J. Afr. Earth Sci.} {\bf 2015}, {\em
+  101},~194--219.
+\newblock {\url{https://doi.org/10.1016/j.jafrearsci.2014.09.006}}.
+
+\bibitem[Youssef \em{et~al.}(2009)Youssef, Pradhan, Gaber, and
+  Buchroithner]{nhess-9-751-2009}
+Youssef, A.M.; Pradhan, B.; Gaber, A.F.D.; Buchroithner, M.F.
+\newblock Geomorphological hazard analysis along the Egyptian Red Sea coast
+  between Safaga and Quseir.
+\newblock {\em Nat. Hazards Earth Syst. Sci.} {\bf 2009}, {\em
+  9},~751--766.
+\newblock {\url{https://doi.org/10.5194/nhess-9-751-2009}}.
+
+\bibitem[Elfadaly \em{et~al.}(2018)Elfadaly, Attia, and Lasaponara]{Elfadaly}
+Elfadaly, A.; Attia, W.; Lasaponara, R.
+\newblock {Monitoring the Environmental Risks Around Medinet Habu and Ramesseum
+  Temple at West Luxor, Egypt, Using Remote Sensing and GIS Techniques}.
+\newblock {\em J. Archaeol. Method Theory} {\bf 2018}, {\em
+  25},~587--610.
+\newblock {\url{https://doi.org/10.1007/s10816-017-9347-x}}.
+
+\bibitem[Sultan \em{et~al.}(1986)Sultan, Arvidson, and
+  Sturchio]{Sultanetal1986}
+Sultan, M.; Arvidson, R.E.; Sturchio, N.C.
+\newblock {Mapping of serpentinites in the Eastern Desert of Egypt by using
+  Landsat thematic mapper data}.
+\newblock {\em Geology} {\bf 1986}, {\em 14},~995--999.
+\newblock
+  {\url{https://doi.org/10.1130/0091-7613(1986)14<995:MOSITE>2.0.CO;2}}.
+
+\bibitem[Sultan \em{et~al.}(1987)Sultan, Arvidson, Sturchio, and
+  Guinness]{Sultanetal1987}
+Sultan, M.; Arvidson, R.E.; Sturchio, N.C.; Guinness, E.A.
+\newblock {Lithologic mapping in arid regions with Landsat thematic mapper
+  data: Meatiq dome, Egypt}.
+\newblock {\em Gsa Bull.} {\bf 1987}, {\em 99},~748--762.
+\newblock
+  {\url{https://doi.org/10.1130/0016-7606(1987)99<748:LMIARW>2.0.CO;2}}.
+
+\bibitem[Irons \em{et~al.}(2012)Irons, Dwyer, and Barsi]{IRONS201211}
+Irons, J.R.; Dwyer, J.L.; Barsi, J.A.
+\newblock The next Landsat satellite: The Landsat Data Continuity Mission.
+\newblock {\em Remote Sens. Environ.} {\bf 2012}, {\em 122},~11--21.
+\newblock Landsat Legacy Special Issue,
+  {\url{https://doi.org/10.1016/j.rse.2011.08.026}}.
+
+\bibitem[{R Core Team}(2022)]{RCoreTeam}
+{R Core Team}.
+\newblock {\em R: A Language and Environment for Statistical Computing};
+\newblock R Foundation for Statistical Computing: Vienna, Austria,  2022.
+
+\bibitem[Xu and Tian(2015)]{XuTian}
+Xu, D.; Tian, Y.
+\newblock {A Comprehensive Survey of Clustering Algorithms}.
+\newblock {\em Ann. Data Sci.} {\bf 2015}, {\em 2},~165--193.
+\newblock {\url{https://doi.org/10.1007/s40745-015-0040-1}}.
+
+\bibitem[Chander and Gopalakrishnan(2023)]{CHANDER2023179}
+Chander, B.; Gopalakrishnan, K.
+\newblock 10---Data clustering using unsupervised machine learning. In {\em
+  Statistical Modeling in Machine Learning}; Goswami, T., Sinha, G., Eds.;
+  Academic Press: \hl{Cambridge, MA, USA,} %newly added information, please confirm
+  2023; pp. 179--204.
+\newblock {\url{https://doi.org/10.1016/B978-0-323-91776-6.00015-4}}.
+
+\bibitem[Zhiying \em{et~al.}(2023)Zhiying, Yuanrong, Hanxin, Peng, and
+  Shuanghui]{ZHIYING2023101935}
+Zhiying, X.; Yuanrong, H.; Hanxin, L.; Peng, Y.; Shuanghui, C.
+\newblock Hierarchical clustering for line detection with UAV images and an
+  application for the estimation of the clearance volume of oyster stones.
+\newblock {\em Ecol. Inform.} {\bf 2023}, {\em 73},~101935.
+\newblock {\url{https://doi.org/10.1016/j.ecoinf.2022.101935}}.
+
+\bibitem[Xie \em{et~al.}(2023)Xie, Liu, Das, Chen, and
+  Srivastava]{XIE2023109230}
+Xie, W.B.; Liu, Z.; Das, D.; Chen, B.; Srivastava, J.
+\newblock Scalable clustering by aggregating representatives in hierarchical
+  groups.
+\newblock {\em Pattern Recognit.} {\bf 2023}, {\em 136},~109230.
+\newblock {\url{https://doi.org/10.1016/j.patcog.2022.109230}}.
+
+\bibitem[Zein \em{et~al.}(2023)Zein, Dowaji, and Al-Khayatt]{ZEIN2023100731}
+Zein, A.A.; Dowaji, S.; Al-Khayatt, M.I.
+\newblock Clustering-based method for big spatial data partitioning.
+\newblock {\em Meas. Sens.} {\bf 2023}, {\em 27},~100731.
+\newblock {\url{https://doi.org/10.1016/j.measen.2023.100731}}.
+
+\bibitem[Roy and Mandal(2012)]{ROY2012452}
+Roy, P.; Mandal, J.
+\newblock A Novel Spatial Fuzzy Clustering using Delaunay Triangulation for
+  Large Scale GIS Data (NSFCDT).
+\newblock {\em Procedia Technol.} {\bf 2012}, {\em 6},~452--459.
+\newblock {\url{https://doi.org/10.1016/j.protcy.2012.10.054}}.
+
+\bibitem[Guo \em{et~al.}(2018)Guo, Şengür, Akbulut, and Shipley]{GUO201828}
+Guo, Y.; Şengür, A.; Akbulut, Y.; Shipley, A.
+\newblock An effective color image segmentation approach using neutrosophic
+  adaptive mean shift clustering.
+\newblock {\em Measurement} {\bf 2018}, {\em 119},~28--40.
+\newblock {\url{https://doi.org/10.1016/j.measurement.2018.01.025}}.
+
+\bibitem[Beck \em{et~al.}(2019)Beck, Duong, Lebbah, Azzag, and
+  Cérin]{BECK2019128}
+Beck, G.; Duong, T.; Lebbah, M.; Azzag, H.; Cérin, C.
+\newblock A distributed approximate nearest neighbors algorithm for efficient
+  large scale mean shift clustering.
+\newblock {\em J. Parallel Distrib. Comput.} {\bf 2019}, {\em
+  134},~128--139.
+\newblock {\url{https://doi.org/10.1016/j.jpdc.2019.07.015}}.
+
+\bibitem[Cheng \em{et~al.}(2023)Cheng, Xu, Zhang, and Jin]{CHENG2023170}
+Cheng, D.; Xu, R.; Zhang, B.; Jin, R.
+\newblock Fast density estimation for density-based clustering methods.
+\newblock {\em Neurocomputing} {\bf 2023}, {\em 532},~170--182.
+\newblock {\url{https://doi.org/10.1016/j.neucom.2023.02.035}}.
+
+\bibitem[Maheshwari \em{et~al.}(2023)Maheshwari, Mohanty, and
+  Mishra]{MAHESHWARI2023109341}
+Maheshwari, R.; Mohanty, S.K.; Mishra, A.C.
+\newblock DCSNE: Density-based Clustering using Graph Shared Neighbors and
+  Entropy.
+\newblock {\em Pattern Recognit.} {\bf 2023}, {\em 137},~109341.
+\newblock {\url{https://doi.org/10.1016/j.patcog.2023.109341}}.
+
+\bibitem[You and Suh(2022)]{YOU2022107457}
+You, K.; Suh, C.
+\newblock Parameter estimation and model-based clustering with spherical normal
+  distribution on the unit hypersphere.
+\newblock {\em Comput. Stat. Data Anal.} {\bf 2022}, {\em
+  171},~107457.
+\newblock {\url{https://doi.org/10.1016/j.csda.2022.107457}}.
+
+\bibitem[Ouyang and Shen(2022)]{OUYANG2022688}
+Ouyang, T.; Shen, X.
+\newblock Online structural clustering based on DBSCAN extension with granular
+  descriptors.
+\newblock {\em Inf. Sci.} {\bf 2022}, {\em 607},~688--704.
+\newblock {\url{https://doi.org/10.1016/j.ins.2022.06.027}}.
+
+\bibitem[Pranata \em{et~al.}(2023)Pranata, Gunawan, and Gaol]{PRANATA2023319}
+Pranata, K.S.; Gunawan, A.A.S.; Gaol, F.L.
+\newblock Development clustering system IDX company with k-means algorithm and
+  DBSCAN based on fundamental indicator and ESG.
+\newblock {\em Procedia Comput. Sci.} {\bf 2023}, {\em 216},~319--327.
+\newblock {\url{https://doi.org/10.1016/j.procs.2022.12.142}}.
+
+\bibitem[Wu \em{et~al.}(2022)Wu, Cao, Tian, and Wang]{WU202257}
+Wu, G.; Cao, L.; Tian, H.; Wang, W.
+\newblock HY-DBSCAN: A hybrid parallel DBSCAN clustering algorithm scalable on
+  distributed-memory computers.
+\newblock {\em J. Parallel Distrib. Comput.} {\bf 2022}, {\em
+  168},~57--69.
+\newblock {\url{https://doi.org/10.1016/j.jpdc.2022.06.005}}.
+
+\bibitem[Fávero \em{et~al.}(2023)Fávero, Belfiore, and {de Freitas
+  Souza}]{FAVERO2023193}
+Fávero, L.P.; Belfiore, P.; {de Freitas Souza}, R.
+\newblock Chapter 11---Cluster analysis. In {\em Data Science, Analytics and
+  Machine Learning with R}; Fávero, L.P.,  Belfiore, P.,  {de Freitas Souza},
+  R., Eds.; Academic Press:  \hl{Cambridge, MA, USA,} %newly added information, please confirm
+  2023; pp. 193--201.
+\newblock {\url{https://doi.org/10.1016/B978-0-12-824271-1.00005-6}}.
+
+\bibitem[Wessel \em{et~al.}(2019)Wessel, Luis, Uieda, Scharroo, Wobbe, Smith,
+  and Tian]{Wessel}
+Wessel, P.; Luis, J.F.; Uieda, L.; Scharroo, R.; Wobbe, F.; Smith, W.H.F.;
+  Tian, D.
+\newblock The Generic Mapping Tools Version 6.
+\newblock {\em Geochem. Geophys. Geosystems} {\bf 2019}, {\em
+  20},~5556--5564.
+\newblock {\url{https://doi.org/10.1029/2019GC008515}}.
+
+\bibitem[Lemenkova and Debeir(2022)]{Lemenkova202228}
+Lemenkova, P.; Debeir, O.
+\newblock {Seismotectonics of Shallow-Focus Earthquakes in Venezuela with Links
+  to Gravity Anomalies and Geologic Heterogeneity Mapped by a GMT Scripting
+  Language}.
+\newblock {\em Sustainability} {\bf 2022}, {\em 14},~15966.
+\newblock {\url{https://doi.org/10.3390/su142315966}}.
+
+\bibitem[Kamel(2020)]{Kamel}
+Kamel, M.
+\newblock {Monitoring of Land Use and Land Cover Change Detection Using
+  Multi-temporal Remote Sensing and Time Series Analysis of Qena-Luxor
+  Governorates (QLGs), Egypt}.
+\newblock {\em J. Indian Soc. Remote Sens.} {\bf 2020},
+  {\em 48},~1767--1785.
+\newblock {\url{https://doi.org/10.1007/s12524-020-01202-8}}.
+
+\bibitem[Sitanggang \em{et~al.}(2018)Sitanggang, Pertiwi, and
+  Agmalaro]{8611806}
+Sitanggang, I.S.; Pertiwi, D.P.; Agmalaro, M.A.
+\newblock Verifying Haze Dispersion from Peatland Fires using Classified
+  Landsat 8.
+\newblock In Proceedings of the 2018 4th International Symposium on
+  Geoinformatics (ISyG),  \hl{Malang, Indonesia, 10--12 November 2018;} pp. 1--5.
+\newblock {\url{https://doi.org/10.1109/ISYG.2018.8611806}}.
+
+\bibitem[Hermas and Sadek(2013)]{Hermas}
+Hermas, E.; Sadek, M.
+\newblock {Triggering upstream channel incision in the fluvial systems of the
+  trunk valley of Wadi Watir drainage basin, South Sinai Peninsula, Egypt}.
+\newblock {\em Arab. J. Geosci.} {\bf 2013}, {\em 6},~4057--4068.
+\newblock {\url{https://doi.org/10.1007/s12517-012-0663-x}}.
+
+\bibitem[Moneim(2014)]{Moneim}
+Moneim, A.
+\newblock {Hydrogeological conditions and aquifers potentiality for sustainable
+  development of the desert areas in Wadi Qena, Eastern Desert, Egypt}.
+\newblock {\em Arab. J. Geosci.} {\bf 2014}, {\em 7},~4573--4591.
+\newblock {\url{https://doi.org/10.1007/s12517-013-1080-5}}.
+
+\bibitem[{Abd El Hameed} \em{et~al.}(2017){Abd El Hameed}, {El-Shayeb},
+  {El-Araby}, and Hegab]{ELHAMEED2017218}
+{Abd El Hameed}, A.G.; {El-Shayeb}, H.M.; {El-Araby}, N.A.; Hegab, M.G.
+\newblock Integrated geoelectrical and hydrogeological studies on Wadi Qena,
+  Egypt.
+\newblock {\em Nriag J. Astron. Geophys.} {\bf 2017}, {\em
+  6},~218--229.
+\newblock {\url{https://doi.org/10.1016/j.nrjag.2017.03.003}}.
+
+\bibitem[Othman \em{et~al.}(2022)Othman, Beshr, El-Gawad, and Ibraheem]{Othman}
+Othman, A.A.; Beshr, A.M.; El-Gawad, A.M.S.A.; Ibraheem, I.M.
+\newblock Hydrogeophysical investigation using remote sensing and geoelectrical
+  data in southeast Hiw, Qena, Egypt.
+\newblock {\em Geocarto Int.} {\bf 2022}, {\em 37},
+~14241--14260.
+\newblock {\url{https://doi.org/10.1080/10106049.2022.2087750}}.
+
+\bibitem[Gaber \em{et~al.}(2020)Gaber, Mohamed, ElGalladi, Abdelkareem, Beshr,
+  and Koch]{rs12101559}
+Gaber, A.; Mohamed, A.K.; ElGalladi, A.; Abdelkareem, M.; Beshr, A.M.; Koch, M.
+\newblock Mapping the Groundwater Potentiality of West Qena Area, Egypt, Using
+  Integrated Remote Sensing and Hydro-Geophysical Techniques.
+\newblock {\em Remote Sens.} {\bf 2020}, {\em 12}.
+\newblock {\url{https://doi.org/10.3390/rs12101559}}.
+
+\bibitem[Azzazy \em{et~al.}(2022)Azzazy, Elhusseiny, and
+  Zamzam]{AZZAZY2022104805}
+Azzazy, A.A.; Elhusseiny, A.A.; Zamzam, S.
+\newblock Integrated radioactive mineralization modeling using analytical
+  hierarchy process for airborne radiometric and remote sensing data, East Wadi
+  Qena (EWQ), Eastern Desert, Egypt.
+\newblock {\em J. Appl. Geophys.} {\bf 2022}, {\em 206},~104805.
+\newblock {\url{https://doi.org/10.1016/j.jappgeo.2022.104805}}.
+
+\bibitem[Abdelkareem and El-Baz(2015)]{ABDELKAREEM2015245}
+Abdelkareem, M.; El-Baz, F.
+\newblock Evidence of drainage reversal in the NE Sahara revealed by
+  space-borne remote sensing data.
+\newblock {\em J. Afr. Earth Sci.} {\bf 2015}, {\em
+  110},~245--257.
+\newblock {\url{https://doi.org/10.1016/j.jafrearsci.2015.06.019}}.
+
+\bibitem[Lemenkova \em{et~al.}(2022)Lemenkova, Plaen, Lecocq, and
+  Debeir]{Lemenkova202231}
+Lemenkova, P.; Plaen, R.D.; Lecocq, T.; Debeir, O.
+\newblock {Computer Vision Algorithms of DigitSeis for Building a Vectorised
+  Dataset of Historical Seismograms from the Archive of Royal Observatory of
+  Belgium}.
+\newblock {\em Sensors} {\bf 2022}, {\em 23},~56.
+\newblock {\url{https://doi.org/10.3390/s23010056}}.
+
+\bibitem[ElQadi \em{et~al.}(2020)ElQadi, Lesiv, Dyer, and
+  Dorin]{ELQADI2020104696}
+ElQadi, M.M.; Lesiv, M.; Dyer, A.G.; Dorin, A.
+\newblock Computer vision-enhanced selection of geo-tagged photos on social
+  network sites for land cover classification.
+\newblock {\em Environ. Model. Softw.} {\bf 2020}, {\em
+  128},~104696.
+\newblock {\url{https://doi.org/10.1016/j.envsoft.2020.104696}}.
+
+\bibitem[Hussein \em{et~al.}(1995)Hussein, Rabie, and Nabi]{Husseinetal1995}
+Hussein, H.A.; Rabie, S.I.; Nabi, S.H.A.
+\newblock Regional remapping of the basement complex outcrops, using factor
+  analysis to spectrometric data, of the Gabal Eteiqa, Eastern Desert, Egypt.
+\newblock {\em Int. J. Remote Sens.} {\bf 1995}, {\em
+  16},~811--823.
+\newblock {\url{https://doi.org/10.1080/01431169508954445}}.
+
+\bibitem[Dhanya \em{et~al.}(2022)Dhanya, Subeesh, Kushwaha, Vishwakarma,
+  {Nagesh Kumar}, Ritika, and Singh]{DHANYA2022211}
+Dhanya, V.; Subeesh, A.; Kushwaha, N.; Vishwakarma, D.K.; {Nagesh Kumar}, T.;
+  Ritika, G.; Singh, A.
+\newblock Deep learning based computer vision approaches for smart agricultural
+  applications.
+\newblock {\em Artif. Intell. Agric.} {\bf 2022}, {\em
+  6},~211--229.
+\newblock {\url{https://doi.org/10.1016/j.aiia.2022.09.007}}.
+
+\bibitem[Curran \em{et~al.}(1985)Curran et~al.]{curran1985principles}
+Curran, P.J.
+\newblock {\em Principles of Remote Sensing}; Longman Inc.: \hl{Harlow, UK, } %MDPI: We added the location of the publisher. Please confirm.
+ 1985.
+
+\bibitem[Nasr \em{et~al.}(2007)Nasr, Elkaffas, El-Tobely, Ragheb, and
+  El-Samie]{4234117}
+Nasr, M.E.; Elkaffas, S.M.; El-Tobely, T.A.; Ragheb, A.M.; El-Samie, F.E.A.
+\newblock An Integrated Image Fusion Technique for Boosting the Quality of
+  Noisy Remote Sensing Images.
+\newblock In Proceedings of the 2007 National Radio Science Conference,  \hl{Cairo, Egypt, 13--15 March 2007;}
+  \mbox{pp. 1--10.}
+\newblock {\url{https://doi.org/10.1109/NRSC.2007.371370}}.
+
+\bibitem[{El-Shamy}(1985)]{ElShamy}
+{El-Shamy}, I.
+\newblock {Quantitative geomorphology and surface water conservation in Wadi
+  Matula-Wadi Abbad area, central Eastern Desert}.
+\newblock {\em Ann. Geol. Surv. Egypt} {\bf 1985}, {\em
+  15},~349--358.
+
+\bibitem[Abdelkhalek and King-Okumu(2021)]{Abdelkhalek2021}
+Abdelkhalek, A.; King-Okumu, C., Groundwater Exploitation in Mega Projects:
+  Egypt's 1.5 Million Feddan Project.
+\newblock In {\em Groundwater in Egypt's Deserts}; Springer International
+  Publishing: Cham, Switzerland, 2021; pp. 347--372.
+\newblock {\url{https://doi.org/10.1007/978-3-030-77622-0_14}}.
+
+\bibitem[Abdelkareem \em{et~al.}(2012)Abdelkareem, El-Baz, Askalany, Akawy, and
+  Ghoneim]{Abdelkareem}
+Abdelkareem, M.; El-Baz, F.; Askalany, M.; Akawy, A.; Ghoneim, E.
+\newblock Groundwater prospect map of Egypt's Qena Valley using data fusion.
+\newblock {\em Int. J. Image Data Fusion} {\bf 2012}, {\em
+  3},~169--189.
+\newblock {\url{https://doi.org/10.1080/19479832.2011.569510}}.
+
+\bibitem[Kamal El-Din \em{et~al.}(2021)Kamal El-Din, Abdelaty, Moubark, and
+  Abdelkareem]{Kamal2021}
+Kamal El-Din, G.; Abdelaty, D.; Moubark, K.; Abdelkareem, M.
+\newblock {Assessment of the groundwater possibility and its efficiency for
+  irrigation purposes in the area east of Qena, Egypt}.
+\newblock {\em Arab. J. Geosci.} {\bf 2021}, {\em 14},~839.
+\newblock {\url{https://doi.org/10.1007/s12517-021-07041-2}}.
+
+\bibitem[{Abd El Aal} \em{et~al.}(2020){Abd El Aal}, Nabawy, Aqeel, and
+  Abidi]{ABDELAAL2020103671}
+{Abd El Aal}, A.K.; Nabawy, B.S.; Aqeel, A.; Abidi, A.
+\newblock Geohazards assessment of the karstified limestone cliffs for safe
+  urban constructions, Sohag, West Nile Valley, Egypt.
+\newblock {\em J. Afr. Earth Sci.} {\bf 2020}, {\em
+  161},~103671.
+\newblock {\url{https://doi.org/10.1016/j.jafrearsci.2019.103671}}.
+
+\bibitem[Lenney \em{et~al.}(1996)Lenney, Woodcock, Collins, and
+  Hamdi]{LENNEY19968}
+Lenney, M.P.; Woodcock, C.E.; Collins, J.B.; Hamdi, H.
+\newblock \hl{The} %MDPI: Please add the citation for Ref.122 and 123 in main text or deleted these two refs. in back matter.
+ status of agricultural lands in Egypt: The use of multitemporal
+  NDVI features derived from landsat TM.
+\newblock {\em Remote Sens. Environ.} {\bf 1996}, {\em 56},~8--20.
+\newblock {\url{https://doi.org/10.1016/0034-4257(95)00152-2}}.
+
+\bibitem[Hereher(2015)]{Hereher}
+Hereher, M.
+\newblock {\hl{Environmental} monitoring and change assessment of Toshka lakes in
+  southern Egypt using remote sensing}.
+\newblock {\em Environ. Earth Sci.} {\bf 2015}, {\em 73},~3623--3632.
+\newblock {\url{https://doi.org/10.1007/s12665-014-3651-5}}.
+
+\end{thebibliography}
+
+%\nocite{*}
+
+%=====================================
+% References, variant A: external bibliography
+%=====================================
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\PublishersNote{}
+\end{adjustwidth}
+\end{document}
